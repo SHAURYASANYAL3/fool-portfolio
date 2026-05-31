@@ -55,7 +55,9 @@
       background:var(--bg);color:var(--text);
       font-family:var(--ff-body);font-size:16px;line-height:1.6;
       overflow-x:hidden;image-rendering:pixelated;
+      cursor:none; /* Hide default cursor */
     }
+    a, button, .mc-border, .skill-slot{ cursor:none!important; }
 
     /* ═══════════════════════════════════════
        MINECRAFT UTILITIES
@@ -467,7 +469,7 @@ const SKILLS = [
 ];
 
 /* ─────────────────────────────────────────────
-   THREE.JS SCENE — Rotating Voxel
+   THREE.JS SCENE — Rotating Voxel World
 ───────────────────────────────────────────── */
 function ThreeScene() {
   const cvs = useRef(null);
@@ -481,42 +483,77 @@ function ThreeScene() {
 
     const scene    = new T.Scene();
     const camera   = new T.PerspectiveCamera(45, W / H, 0.1, 100);
-    camera.position.set(0, 0, 5);
+    camera.position.set(0, 0, 8);
 
     const renderer = new T.WebGLRenderer({ canvas: el, antialias: false, alpha: true });
     renderer.setSize(W, H);
-    renderer.setPixelRatio(1); // Keep it sharp/pixelated
+    renderer.setPixelRatio(1);
     renderer.setClearColor(0x000000, 0);
 
     const ambLight  = new T.AmbientLight(0xffffff, 0.8);
+    const pointLight = new T.PointLight(0x00ffff, 3, 20);
+    pointLight.position.set(-3, 3, 5);
     const dirLight  = new T.DirectionalLight(0xffffff, 1.2);
     dirLight.position.set(5, 5, 5);
-    scene.add(ambLight, dirLight);
+    scene.add(ambLight, pointLight, dirLight);
 
-    const geometry = new T.BoxGeometry(2, 2, 2);
-    const grassTop  = new T.MeshStandardMaterial({ color: 0x55aa33, roughness: 0.8 });
-    const dirtSide  = new T.MeshStandardMaterial({ color: 0x8b4513, roughness: 0.9 });
-    const dirtBase  = new T.MeshStandardMaterial({ color: 0x5d3a1a, roughness: 1.0 });
+    const group = new T.Group();
+    scene.add(group);
 
+    // Main Grass Block
+    const geometry = new T.BoxGeometry(2.2, 2.2, 2.2);
+    const grassTop  = new T.MeshStandardMaterial({ color: 0x55aa33, roughness: 0.7 });
+    const dirtSide  = new T.MeshStandardMaterial({ color: 0x7d4a2a, roughness: 0.9 }); // Darker brown
+    const dirtBase  = new T.MeshStandardMaterial({ color: 0x4d2a1a, roughness: 1.0 });
     const materials = [dirtSide, dirtSide, grassTop, dirtBase, dirtSide, dirtSide];
     const block = new T.Mesh(geometry, materials);
-    scene.add(block);
-
-    // Block Edges (Black Outline)
+    
     const edges = new T.EdgesGeometry(geometry);
     const line  = new T.LineSegments(edges, new T.LineBasicMaterial({ color: 0x000000, linewidth: 2 }));
     block.add(line);
+    group.add(block);
 
-    const pN = 60;
+    // Name Tag Floating Above
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 512; canvas.height = 128;
+    ctx.fillStyle = 'rgba(0,0,0,0.6)';
+    ctx.fillRect(0,0,512,128);
+    ctx.font = 'bold 80px VT323';
+    ctx.fillStyle = '#ffffff';
+    ctx.textAlign = 'center';
+    ctx.fillText('SHAURYA', 256, 90);
+    
+    const tex = new T.CanvasTexture(canvas);
+    const spriteMat = new T.SpriteMaterial({ map: tex });
+    const sprite = new T.Sprite(spriteMat);
+    sprite.scale.set(4, 1, 1);
+    sprite.position.y = 2.5;
+    group.add(sprite);
+
+    // Floating Diamonds
+    const diamonds = [];
+    const diaGeom = new T.OctahedronGeometry(0.3, 0);
+    const diaMat  = new T.MeshStandardMaterial({ color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 0.8 });
+    for(let i=0; i<3; i++){
+      const dia = new T.Mesh(diaGeom, diaMat);
+      const angle = (i / 3) * Math.PI * 2;
+      dia.position.set(Math.cos(angle) * 4, Math.sin(angle) * 4, 0);
+      group.add(dia);
+      diamonds.push({ mesh: dia, angle });
+    }
+
+    // XP Particles
+    const pN = 50;
     const pPos = new Float32Array(pN * 3);
     for (let i = 0; i < pN; i++) {
-      pPos[i*3]   = (Math.random() - 0.5) * 8;
-      pPos[i*3+1] = (Math.random() - 0.5) * 8;
-      pPos[i*3+2] = (Math.random() - 0.5) * 8;
+      pPos[i*3]   = (Math.random() - 0.5) * 12;
+      pPos[i*3+1] = (Math.random() - 0.5) * 12;
+      pPos[i*3+2] = (Math.random() - 0.5) * 12;
     }
     const pGeom = new T.BufferGeometry();
     pGeom.setAttribute('position', new T.BufferAttribute(pPos, 3));
-    const pMat = new T.PointsMaterial({ color: 0x80ff20, size: 0.08, transparent: true, opacity: 0.5 });
+    const pMat = new T.PointsMaterial({ color: 0x80ff20, size: 0.12, transparent: true, opacity: 0.7 });
     const pts  = new T.Points(pGeom, pMat);
     scene.add(pts);
 
@@ -524,10 +561,21 @@ function ThreeScene() {
     const tick = () => {
       raf = requestAnimationFrame(tick);
       t  += 0.015;
-      block.rotation.y += 0.01;
-      block.rotation.x = Math.sin(t * 0.3) * 0.1;
-      block.position.y = Math.sin(t * 0.8) * 0.2;
-      pts.rotation.y += 0.003;
+      
+      block.rotation.y += 0.008;
+      block.rotation.x = Math.sin(t * 0.3) * 0.15;
+      
+      sprite.position.y = 2.5 + Math.sin(t * 2) * 0.1;
+
+      diamonds.forEach((d, i) => {
+        d.angle += 0.012;
+        d.mesh.position.x = Math.cos(d.angle) * 4.2;
+        d.mesh.position.z = Math.sin(d.angle) * 4.2;
+        d.mesh.position.y = Math.sin(t + i) * 0.8;
+        d.mesh.rotation.y += 0.03;
+      });
+
+      pts.rotation.y -= 0.002;
       renderer.render(scene, camera);
     };
     tick();
@@ -544,8 +592,9 @@ function ThreeScene() {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
       renderer.dispose();
-      geometry.dispose();
-      materials.forEach(m => m.dispose());
+      [geometry, diaGeom, pGeom].forEach(g => g.dispose());
+      [...materials, diaMat, pMat, spriteMat].forEach(m => m.dispose());
+      tex.dispose();
     };
   }, []);
 
@@ -666,6 +715,21 @@ function Hero() {
    PLAYER PROFILE (About)
 ───────────────────────────────────────────── */
 function About() {
+  const ref = useRef(null);
+
+  const onMove = e => {
+    const el = ref.current; if (!el) return;
+    const r  = el.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+    el.style.transform  = `perspective(1000px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg)`;
+  };
+
+  const onLeave = () => {
+    const el = ref.current; if (!el) return;
+    el.style.transform  = '';
+  };
+
   return (
     <section id="about" style={{padding:'8rem 0'}}>
       <div className="container">
@@ -675,7 +739,9 @@ function About() {
           <div className="sec-rule" style={{background:'var(--mc-stone)'}}></div>
         </div>
         
-        <div className="mc-border-dark reveal" style={{display:'grid', gridTemplateColumns:'1fr 2fr', gap:'2rem', alignItems:'center'}}>
+        <div ref={ref} className="mc-border-dark reveal" 
+          onMouseMove={onMove} onMouseLeave={onLeave}
+          style={{display:'grid', gridTemplateColumns:'1fr 2fr', gap:'2rem', alignItems:'center', transition:'transform 0.1s ease-out'}}>
           <div style={{textAlign:'center'}}>
              <div className="mc-border" style={{width:'120px', height:'120px', margin:'0 auto 1rem', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'3rem'}}>
                👤
@@ -722,12 +788,15 @@ function Skills() {
                   style={{
                     aspectRatio:'1', background:'#8b8b8b', border:'2px solid #373737', 
                     boxShadow:'inset 2px 2px 0 #373737', display:'flex', alignItems:'center', 
-                    justifyContent:'center', fontSize:'1.5rem', cursor:'none', position:'relative'
+                    justifyContent:'center', fontSize:'1.5rem', cursor:'none', position:'relative',
+                    transition:'transform 0.15s var(--ease-step)'
                   }}
                   onMouseEnter={() => sk && setTooltip(sk)}
                   onMouseLeave={() => setTooltip(null)}
                 >
-                  {sk ? sk.icon : ''}
+                  <div style={{transition:'transform 0.2s', transform: sk ? 'scale(1)' : 'scale(0)'}}>
+                    {sk ? sk.icon : ''}
+                  </div>
                 </div>
               );
             })}
@@ -735,12 +804,12 @@ function Skills() {
 
           {tooltip && (
             <div className="mc-border pixel-text" style={{
-              position:'absolute', top:'-100px', left:'50%', transform:'translateX(-50%)',
-              zIndex:10, width:'300px', background:'rgba(20, 8, 40, 0.95)', color:'#fff',
-              border:'4px solid var(--mc-purple)', boxShadow:'0 0 20px var(--mc-purple)',
-              padding:'12px', pointerEvents:'none'
+              position:'absolute', top:'-110px', left:'50%', transform:'translateX(-50%)',
+              zIndex:10, width:'300px', background:'rgba(20, 8, 40, 0.98)', color:'#fff',
+              border:'4px solid var(--mc-purple)', boxShadow:'0 0 30px var(--mc-purple)',
+              padding:'12px', pointerEvents:'none', animation:'heroAppear 0.3s forwards'
             }}>
-              <div style={{color:'var(--mc-purple)', fontSize:'1.4rem'}}>{tooltip.name}</div>
+              <div style={{color:'var(--mc-purple)', fontSize:'1.4rem', borderBottom:'2px solid var(--mc-purple)', marginBottom:'5px'}}>{tooltip.name}</div>
               <div style={{color:'var(--mc-xp)', fontSize:'1rem'}}>{tooltip.level}</div>
               <div style={{marginTop:'8px', fontSize:'0.9rem', fontStyle:'italic', color:'#bbb'}}>{tooltip.lore}</div>
             </div>
@@ -753,12 +822,38 @@ function Skills() {
 }
 
 /* ─────────────────────────────────────────────
-   QUEST CARD
+   QUEST CARD (3D tilt)
 ───────────────────────────────────────────── */
 function QuestCard({ p }) {
+  const ref = useRef(null);
+
+  const onMove = e => {
+    const el = ref.current; if (!el) return;
+    const r  = el.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+    el.style.transform  = `perspective(1000px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg) scale3d(1.02,1.02,1.02)`;
+    const glow = el.querySelector('.card-glow');
+    if (glow) {
+      glow.style.background = `radial-gradient(circle at ${50 + dx*30}% ${50 + dy*30}%, rgba(128,255,32,0.15) 0%, transparent 60%)`;
+      glow.style.opacity = '1';
+    }
+  };
+
+  const onLeave = () => {
+    const el = ref.current; if (!el) return;
+    el.style.transform  = '';
+    const glow = el.querySelector('.card-glow');
+    if (glow) glow.style.opacity = '0';
+  };
+
   return (
-    <div className="artifact-card mc-border-dark reveal" style={{marginBottom:'2rem', padding:'2.5rem'}}>
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'1.5rem'}}>
+    <div ref={ref} className="artifact-card mc-border-dark reveal" 
+      onMouseMove={onMove} onMouseLeave={onLeave}
+      style={{marginBottom:'3rem', padding:'2.5rem', transition:'transform 0.1s ease-out', transformStyle:'preserve-3d'}}>
+      <div className="card-glow" style={{position:'absolute',inset:0,opacity:0,pointerEvents:'none',transition:'opacity .4s'}}></div>
+      
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'1.5rem', transform:'translateZ(30px)'}}>
         <div>
           <div className="pixel-text" style={{color:'var(--mc-stone)', fontSize:'1rem', marginBottom:'0.5rem'}}>{p.id}</div>
           <h3 className="pixel-text" style={{fontSize:'2.2rem', color:'#fff'}}>{p.title}</h3>
@@ -769,15 +864,15 @@ function QuestCard({ p }) {
         </div>
       </div>
 
-      <p className="pixel-text" style={{fontSize:'1.3rem', color:'var(--mc-xp)', marginBottom:'1rem', fontStyle:'italic'}}>{p.tagline}</p>
-      <p className="pixel-text" style={{fontSize:'1.1rem', color:'var(--text-dim)', marginBottom:'2rem', lineHeight:'1.5'}}>{p.desc}</p>
+      <p className="pixel-text" style={{fontSize:'1.3rem', color:'var(--mc-xp)', marginBottom:'1rem', fontStyle:'italic', transform:'translateZ(20px)'}}>{p.tagline}</p>
+      <p className="pixel-text" style={{fontSize:'1.1rem', color:'var(--text-dim)', marginBottom:'2rem', lineHeight:'1.5', transform:'translateZ(10px)'}}>{p.desc}</p>
 
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'1.5rem'}}>
+      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'1.5rem', transform:'translateZ(25px)'}}>
         <div style={{display:'flex', gap:'10px', flexWrap:'wrap'}}>
           {p.stack.map(s => <span key={s} className="mc-border pixel-text" style={{padding:'4px 10px', background:'#333', color:'var(--mc-diamond)', fontSize:'0.8rem', border:'2px solid #000', boxShadow:'none'}}>{s}</span>)}
         </div>
         <div style={{display:'flex', gap:'1rem'}}>
-          <a href={p.github} target="_blank" className="btn-gold pixel-text" style={{padding:'0.5rem 1.2rem', background:'var(--mc-xp)', color:'#000', border:'4px solid #000', textDecoration:'none'}}>Claim Rewards</a>
+          <a href={p.github} target="_blank" className="btn-gold pixel-text" style={{padding:'0.5rem 1.2rem', background:'var(--mc-xp)', color:'#000', border:'4px solid #000', textDecoration:'none', boxShadow:'4px 4px 0 #000'}}>Claim Rewards</a>
         </div>
       </div>
     </div>
