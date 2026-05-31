@@ -468,6 +468,197 @@ const SKILLS = [
 ];
 
 /* ─────────────────────────────────────────────
+   THREE.JS SCENE — Rotating Voxel
+───────────────────────────────────────────── */
+function ThreeScene() {
+  const cvs = useRef(null);
+
+  useEffect(() => {
+    if (!cvs.current || !window.THREE) return;
+    const T   = window.THREE;
+    const el  = cvs.current;
+    let W     = el.offsetWidth;
+    let H     = el.offsetHeight;
+
+    const scene    = new T.Scene();
+    const camera   = new T.PerspectiveCamera(45, W / H, 0.1, 100);
+    camera.position.set(0, 0, 5);
+
+    const renderer = new T.WebGLRenderer({ canvas: el, antialias: false, alpha: true });
+    renderer.setSize(W, H);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1));
+    renderer.setClearColor(0x000000, 0);
+
+    const ambLight  = new T.AmbientLight(0xffffff, 0.6);
+    const dirLight  = new T.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(5, 5, 5);
+    scene.add(ambLight, dirLight);
+
+    const geometry = new T.BoxGeometry(1.8, 1.8, 1.8);
+    const grassTop  = new T.MeshLambertMaterial({ color: 0x55aa33 });
+    const dirtSide  = new T.MeshLambertMaterial({ color: 0x8b4513 });
+    const dirtBase  = new T.MeshLambertMaterial({ color: 0x5d3a1a });
+
+    const materials = [dirtSide, dirtSide, grassTop, dirtBase, dirtSide, dirtSide];
+    const block = new T.Mesh(geometry, materials);
+    scene.add(block);
+
+    const pN = 100;
+    const pPos = new Float32Array(pN * 3);
+    for (let i = 0; i < pN; i++) {
+      pPos[i*3]   = (Math.random() - 0.5) * 10;
+      pPos[i*3+1] = (Math.random() - 0.5) * 10;
+      pPos[i*3+2] = (Math.random() - 0.5) * 10;
+    }
+    const pGeom = new T.BufferGeometry();
+    pGeom.setAttribute('position', new T.BufferAttribute(pPos, 3));
+    const pMat = new T.PointsMaterial({ color: 0xffffff, size: 0.05, transparent: true, opacity: 0.3 });
+    const pts  = new T.Points(pGeom, pMat);
+    scene.add(pts);
+
+    let raf, t = 0;
+    const tick = () => {
+      raf = requestAnimationFrame(tick);
+      t  += 0.01;
+      block.rotation.y += 0.01;
+      block.rotation.x = Math.sin(t * 0.5) * 0.2;
+      block.position.y = Math.sin(t) * 0.15;
+      pts.rotation.y += 0.002;
+      renderer.render(scene, camera);
+    };
+    tick();
+
+    const onResize = () => {
+      W = el.offsetWidth; H = el.offsetHeight;
+      camera.aspect = W / H;
+      camera.updateProjectionMatrix();
+      renderer.setSize(W, H);
+    };
+    window.addEventListener('resize', onResize);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', onResize);
+      renderer.dispose();
+      geometry.dispose();
+      materials.forEach(m => m.dispose());
+    };
+  }, []);
+
+  return <canvas ref={cvs} className="hero-canvas" />;
+}
+
+/* ─────────────────────────────────────────────
+   CURSOR SYSTEM (Pixel Crosshair)
+───────────────────────────────────────────── */
+function CursorSystem() {
+  useEffect(() => {
+    if (window.matchMedia('(hover: none)').matches) return;
+    const cur = document.getElementById('cursor-pixel');
+    if (!cur) return;
+
+    const onMove = e => {
+      cur.style.left = e.clientX + 'px';
+      cur.style.top  = e.clientY + 'px';
+    };
+    document.addEventListener('mousemove', onMove);
+
+    const expand = () => { cur.style.transform = 'translate(-50%,-50%) scale(1.5)'; };
+    const shrink = () => { cur.style.transform = 'translate(-50%,-50%) scale(1)'; };
+
+    const bind = () => {
+      document.querySelectorAll('a, button, .mc-border, .skill-slot').forEach(el => {
+        el.addEventListener('mouseenter', expand);
+        el.addEventListener('mouseleave', shrink);
+      });
+    };
+    setTimeout(bind, 1000);
+
+    return () => {
+      document.removeEventListener('mousemove', onMove);
+    };
+  }, []);
+
+  return null;
+}
+
+/* ─────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────── */
+function Nav() {
+  const [solid, setSolid] = useState(false);
+  const [open,  setOpen]  = useState(false);
+
+  useEffect(() => {
+    const fn = () => setSolid(scrollY > 60);
+    addEventListener('scroll', fn);
+    return () => removeEventListener('scroll', fn);
+  }, []);
+
+  const links = [['Spawn','#hero'],['Profile','#about'],['Inventory','#skills'],['Quest Log','#projects'],['Portal','#contact']];
+  const close = () => { setOpen(false); document.body.style.overflow = ''; };
+
+  return (
+    <>
+      <nav id="main-nav" className={solid ? 'solid' : ''}>
+        <a href="#hero" className="nav-logo pixel-text" style={{fontSize:'1.5rem', color:'var(--mc-grass)', textDecoration:'none'}}>SHAURYA.WORLD</a>
+        <ul className="nav-links">
+          {links.map(([lbl, href]) => (
+            <li key={href}><a href={href} className="pixel-text" style={{fontSize:'1.2rem'}}>{lbl}</a></li>
+          ))}
+        </ul>
+        <button className="ham" onClick={() => { setOpen(!open); document.body.style.overflow = !open ? 'hidden' : ''; }}>
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+      <nav className={`mob-drawer ${open ? 'open' : ''}`} style={{background:'var(--void)'}}>
+        <ul>
+          {links.map(([lbl, href]) => (
+            <li key={href}><a href={href} className="pixel-text" style={{fontSize:'2rem', color:'#fff', textDecoration:'none'}} onClick={close}>{lbl}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   HERO (Spawn Point)
+───────────────────────────────────────────── */
+function Hero() {
+  return (
+    <section id="hero">
+      <ThreeScene />
+      <div className="hero-content">
+        <div className="hero-grid">
+          <div>
+            <div className="h-appear" style={{animationDelay:'.2s'}}>
+              <span className="hero-badge pixel-text" style={{fontSize:'1rem', background:'rgba(0,0,0,0.5)', border:'2px solid var(--mc-stone)'}}>
+                <span className="badge-dot" style={{background:'var(--mc-xp)'}}></span> Survival Mode: Active
+              </span>
+            </div>
+            <h1 className="hero-h1 pixel-text h-appear" style={{animationDelay:'.4s', fontSize:'clamp(3rem, 10vw, 6rem)', lineHeight:'1.1'}}>
+              Crafting Systems, <br/><span style={{color:'var(--mc-diamond)'}}>Exploring Ideas.</span>
+            </h1>
+            <p className="hero-tagline h-appear pixel-text" style={{animationDelay:'.6s', fontSize:'1.5rem', color:'var(--text-dim)'}}>
+              A developer's journey through AI, security, <br/>infrastructure, and digital experimentation.
+            </p>
+            <div className="hero-cta h-appear" style={{animationDelay:'.8s'}}>
+              <a href="#projects" className="mc-border pixel-text" style={{fontSize:'1.5rem', background:'var(--mc-stone)', color:'#fff', textDecoration:'none'}}>Enter World</a>
+              <a href="#skills" className="pixel-text" style={{fontSize:'1.5rem', color:'var(--mc-diamond)', marginLeft:'20px'}}>Open Inventory</a>
+            </div>
+          </div>
+        </div>
+        <div className="scroll-hint h-appear" style={{animationDelay:'1s'}}>
+          <div className="scroll-line" style={{background:'var(--mc-stone)'}}></div>
+          <span className="pixel-text">Scroll to Generate Chunks</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
    PLAYER PROFILE (About)
 ───────────────────────────────────────────── */
 function About() {
