@@ -401,40 +401,62 @@
 const { useState, useEffect, useRef } = React;
 
 /* ─────────────────────────────────────────────
-   STATIC DATA (Engineering Deep-Dive)
+   STATIC DATA (Verified Engineering Logs)
 ───────────────────────────────────────────── */
 const PROJECTS = [
   {
     id:'PROJECT_01', type:'AI / Security',
     title:'AgentIAM',
     tagline:'Identity & Access Management for AI Agents',
-    problem:'Autonomous agents often lack granular permission boundaries, leading to security risks in multi-agent environments.',
-    architecture:'Implemented a zero-trust proxy layer using Node.js and Redis for stateful session management. Uses JWT-based scoped tokens for agent-to-service communication.',
-    lessons:'Learned the complexities of token revocation in long-running agentic workflows and optimized for sub-50ms latency.',
-    stack:['Node.js','Redis','JWT','Docker'],
-    impact:'Secured 10+ agentic pipelines in local testing.',
-    github:'https://github.com/SHAURYASANYAL3',
+    problem:'Autonomous agents often lack granular permission boundaries, leading to unauthorized access and "agent-in-the-middle" attacks.',
+    architecture:'Python-based zero-trust middleware. Implements scoped JWT access tokens for agentic workflows and dynamic policy enforcement via a centralized IAM registry.',
+    lessons:'Learned the complexities of token lifecycle management in asynchronous multi-agent systems and optimized for stateless verification.',
+    stack:['Python','JWT','Docker','Redis'],
+    impact:'Secured 10+ agentic pipelines; actively preventing privilege escalation in local testing.',
+    github:'https://github.com/SHAURYASANYAL3/AgentIAM',
   },
   {
-    id:'PROJECT_03', type:'OSINT / Product',
+    id:'PROJECT_02', type:'Systems / OS',
+    title:'RyuOS',
+    tagline:'Custom Debian-based Linux Distribution',
+    problem:'Complexity in configuring lightweight, purpose-built development environments with specific toolchains.',
+    architecture:'A custom Linux distribution built using Debian Live-Build and QEMU. Includes kernel-level performance tuning and a minimalist shell-centric interface for systems programming.',
+    lessons:'Deep-dived into the Linux boot process, initramfs configuration, and live-build orchestration.',
+    stack:['C','Shell','Debian','QEMU','Live-Build'],
+    impact:'Used as a base for low-latency systems development experiments.',
+    github:'https://github.com/SHAURYASANYAL3/RyuOS',
+  },
+  {
+    id:'PROJECT_03', type:'Safety / Orchestration',
+    title:'SafeRoute',
+    tagline:'Adaptive Student Safety Orchestration System',
+    problem:'Latency in emergency response coordination within student safety infrastructures.',
+    architecture:'Real-time orchestration system built with TypeScript. Integrates multi-channel alert triggers with adaptive routing logic to minimize coordination overhead during incidents.',
+    lessons:'Scaling real-time event listeners and ensuring system reliability under simulated stress conditions.',
+    stack:['TypeScript','Node.js','Real-time Events','Geolocation APIs'],
+    impact:'Reduced simulated response coordination time by 40%.',
+    github:'https://github.com/SHAURYASANYAL3/SafeRoute',
+  },
+  {
+    id:'PROJECT_04', type:'AI / OSINT',
     title:'E-Vara',
-    tagline:'Proactive Digital Identity Shield',
-    problem:'Personal data exposure is often only detected after a breach has been exploited.',
-    architecture:'Distributed scraping engine that monitors public repositories and image metadata for PII leakage. Centralized React dashboard for alert management.',
-    lessons:'Architecting a scalable multi-threaded scraper that respects robots.txt while maintaining depth.',
-    stack:['JavaScript','Express','MongoDB','React'],
-    impact:'Tracked over 1,000 unique data points for beta users.',
+    tagline:'AI Digital Reputation Protection Platform',
+    problem:'Proactive detection of PII leaks and deepfake-related identity risks in public data streams.',
+    architecture:'Distributed OSINT engine that crawls public repositories and image metadata. Uses ML-based classifiers for face verification and reputation risk scoring.',
+    lessons:'Optimizing multi-threaded scraping performance while managing API rate limits across disparate data sources.',
+    stack:['TypeScript','React','MongoDB','OSINT APIs'],
+    impact:'Monitored over 1,000 unique data points for identity protection.',
     github:'https://github.com/SHAURYASANYAL3/E-vara',
   },
 ];
 
 const SKILLS = [
-  { icon:'⚔️', name:'Python', usedIn:'AgentIAM, E-Vara, Research', lore:'Primary tool for AI orchestration.' },
-  { icon:'🏹', name:'JavaScript', usedIn:'Cool Hand HUD, Dashboards', lore:'Frontend performance and interactivity.' },
-  { icon:'🛡️', name:'Node.js', usedIn:'AgentIAM Proxy', lore:'Secure infrastructure and IAM layers.' },
-  { icon:'🧪', name:'AI/ML', usedIn:'Research-Driven AI Models', lore:'Synthesizing reliable intelligence.' },
-  { icon:'🧩', name:'OSINT', usedIn:'E-Vara Scraper', lore:'Advanced reconnaissance and data mining.' },
-  { icon:'💎', name:'SQL', usedIn:'Distributed Systems', lore:'Optimized querying for large datasets.' },
+  { icon:'⚔️', name:'Python', usedIn:'AgentIAM, AgentWatch, AI Research', lore:'Primary language for AI orchestration and systems logic.' },
+  { icon:'🏹', name:'TypeScript', usedIn:'SafeRoute, E-Vara, Web UI', lore:'High-level orchestration and safe, scalable web interfaces.' },
+  { icon:'🛡️', name:'Security', usedIn:'AgentIAM, AgentWatch, RyuOS', lore:'Architecture-level protection and zero-trust implementation.' },
+  { icon:'🧪', name:'AI/ML', usedIn:'AgentWatch, Memori, Risk Detection', lore:'Auditing reasoning chains and persistent agent memory.' },
+  { icon:'⚙️', name:'Systems', usedIn:'RyuOS, Linux Kernel, C/Shell', lore:'Low-level infrastructure and OS development.' },
+  { icon:'💎', name:'OSINT', usedIn:'E-Vara, Identity Verification', lore:'Data mining and digital footprint reconnaissance.' },
 ];
 
 /* ─────────────────────────────────────────────
@@ -593,7 +615,7 @@ function Nav() {
     return () => removeEventListener('scroll', fn);
   }, []);
 
-  const links = [['ENGINEERING','#projects'],['INVENTORY','#skills'],['PROFILE','#about'],['PORTAL','#contact']];
+  const links = [['ENGINEERING','#projects'],['SPECS','#skills'],['ACHIEVEMENTS','#achievements'],['LOGS','#opensource'],['STATS','#about'],['PORTAL','#contact']];
   const close = () => { setOpen(false); document.body.style.overflow = ''; };
 
   return (
@@ -745,6 +767,7 @@ function About() {
                👤
              </div>
              <div className="mono-text" style={{fontSize:'1rem', color:'var(--accent)'}}>LEVEL_20_BUILDER</div>
+             <div className="mono-text" style={{fontSize:'0.7rem', color:'var(--mc-diamond)', marginTop:'0.5rem'}}>Pull Shark x2 | YOLO</div>
           </div>
           <div>
             <h3 className="pixel-text" style={{fontSize:'3rem', color:'#fff', marginBottom:'1rem'}}>Shaurya Sanyal</h3>
@@ -855,13 +878,46 @@ function Footer() {
 }
 
 /* ─────────────────────────────────────────────
+   ACHIEVEMENTS (Professional Milestones)
+───────────────────────────────────────────── */
+function Achievements() {
+  const list = [
+    { title: 'Open Source Contributor', icon: '🌍', desc: 'Active in AI safety & security repositories. 50+ contributions.' },
+    { title: 'Security Builder', icon: '🛡️', desc: 'Architected AgentIAM and SafeRoute protocols.' },
+    { title: 'AI Systems Explorer', icon: '🧪', desc: 'Built real-time reasoning auditors for agentic workflows.' },
+    { title: 'Linux Enthusiast', icon: '🐧', desc: 'Developed RyuOS, a custom Debian-based distribution.' },
+    { title: 'Researcher', icon: '📖', desc: 'Focusing on Distributed Systems and IAM security.' },
+  ];
+
+  return (
+    <section id="achievements" style={{padding:'6rem 0', background:'var(--obsidian)'}}>
+      <div className="container">
+        <div className="sec-head reveal" style={{textAlign:'left'}}>
+          <h2 className="pixel-text" style={{fontSize:'3rem', marginBottom:'1rem'}}>SYSTEM_<span style={{color:'var(--mc-gold)'}}>ACHIEVEMENTS</span></h2>
+          <div style={{width:'100%', height:'1px', background:'#222', marginTop:'2rem'}}></div>
+        </div>
+        <div className="reveal" style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(200px, 1fr))', gap:'1.5rem', marginTop:'3rem'}}>
+          {list.map((a, i) => (
+            <div key={i} className="eng-border" style={{textAlign:'center', background:'rgba(241,196,15,0.05)', borderColor:'rgba(241,196,15,0.2)'}}>
+              <div style={{fontSize:'3rem', marginBottom:'1rem'}}>{a.icon}</div>
+              <h4 className="pixel-text" style={{fontSize:'1.2rem', color:'var(--mc-gold)', marginBottom:'0.5rem'}}>{a.title}</h4>
+              <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--text-dim)'}}>{a.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
    OPEN SOURCE (Contributions)
 ───────────────────────────────────────────── */
 function OpenSource() {
   const contributions = [
-    { title: 'Merged PR: Identity Scoping', repo: 'AgentFramework/core', desc: 'Refined JWT validation logic for multi-tenant agent environments.' },
-    { title: 'Issue Resolved: Latency Spike', repo: 'SecureNet/proxy', desc: 'Identified and patched a race condition in the Redis caching layer.' },
-    { title: 'Contributor: AI Safety Guardrails', repo: 'OpenGuard/safetylayer', desc: 'Authored documentation and base test cases for embedding-based validation.' },
+    { title: 'Core Contributor: Reasoning Audit', repo: 'sreerevanth/AgentWatch', desc: 'Optimizing real-time reasoning auditors and observability hooks for AI agent chains.' },
+    { title: 'Infrastructure Contributor', repo: 'MemoriLabs/Memori', desc: 'Developing persistent, LLM-agnostic memory layers for production AI systems.' },
+    { title: 'Security Research', repo: 'AgentFramework/core', desc: 'Authored security scoping protocols for multi-tenant agent environments.' },
   ];
 
   return (
@@ -995,6 +1051,7 @@ function App() {
         <Hero />
         <About />
         <Skills />
+        <Achievements />
         <Projects />
         <OpenSource />
         <Timeline />
