@@ -17,100 +17,80 @@
        TOKENS
     ═══════════════════════════════════════ */
     :root{
-      /* Minecraft Palette */
-      --void:      #0a0a0a;
-      --deep-void: #050505;
-      --mc-gui:    #c6c6c6;
-      --mc-stone:  #7d7d7d;
-      --mc-grass:  #4caf50;
-      --mc-dirt:   #8b4513;
-      --mc-diamond:#00ffff;
-      --mc-purple: #a020f0;
-      --mc-xp:      #80ff20;
-      --mc-health:  #ff0040;
+      /* High-End Engineering Palette */
+      --void:      #0d0d0f;
+      --graphite:  #16161a;
+      --obsidian:  #08080a;
+      --mc-emerald:#2ecc71;
+      --mc-teal:   #1abc9c;
+      --mc-diamond:#3498db;
+      --mc-gold:   #f1c40f;
+      --mc-iron:   #bdc3c7;
+      --mc-xp:      #2ecc71;
+      --mc-health:  #e74c3c;
       
-      /* UI Colors */
+      /* UI UI */
       --bg:        var(--void);
-      --surface:   #1e1e1e;
-      --text:      #ffffff;
-      --text-dim:  #a0a0a0;
-      --border:    #373737;
-      --border-hi: #ffffff;
+      --surface:   var(--graphite);
+      --text:      #f5f5f7;
+      --text-dim:  #8e8e93;
+      --accent:    var(--mc-emerald);
       
       /* Typography */
       --ff-pixel:  'VT323', monospace;
-      --ff-body:   'Inter', sans-serif;
       --ff-mono:   'JetBrains Mono', monospace;
+      --ff-sans:   'Inter', sans-serif;
       
-      --ease:      cubic-bezier(.25, .46, .45, .94);
-      --ease-step: steps(4, end); /* for pixel animations */
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
     }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--mc-stone) transparent}
-    ::-webkit-scrollbar{width:8px;image-rendering:pixelated}
-    ::-webkit-scrollbar-track{background:var(--void)}
-    ::-webkit-scrollbar-thumb{background:var(--mc-stone);border:2px solid var(--border)}
     
     body{
       background:var(--bg);color:var(--text);
-      font-family:var(--ff-body);font-size:16px;line-height:1.6;
-      overflow-x:hidden;image-rendering:pixelated;
-      cursor:none; /* Hide default cursor */
+      font-family:var(--ff-sans);font-size:16px;line-height:1.6;
+      overflow-x:hidden;cursor:none;
     }
-    a, button, .mc-border, .skill-slot{ cursor:none!important; }
+
+    .pixel-text{font-family:var(--ff-pixel);letter-spacing:0.05em;}
+    .mono-text{font-family:var(--ff-mono);font-weight:400;}
 
     /* ═══════════════════════════════════════
-       MINECRAFT UTILITIES
+       TECHNICAL SCHEMATIC UI
     ═══════════════════════════════════════ */
-    .mc-border{
+    .eng-border{
       position:relative;
-      background:var(--mc-gui);
-      border:4px solid #373737;
-      box-shadow: 
-        inset 4px 4px 0 #ffffff,
-        inset -4px -4px 0 #8b8b8b;
-      padding:1rem;
-      color:#373737;
-    }
-    .mc-border-dark{
       background:var(--surface);
-      border:4px solid #000;
-      box-shadow: 
-        inset 4px 4px 0 #373737,
-        inset -4px -4px 0 #121212;
+      border:1px solid #333;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
       padding:1.5rem;
+      transition: all 0.3s var(--ease);
     }
-    .pixel-text{font-family:var(--ff-pixel);image-rendering:pixelated}
-    
-    /* ═══════════════════════════════════════
-       FIXED LAYERS
-    ═══════════════════════════════════════ */
-    #world-bg{
-      position:fixed;inset:0;z-index:0;pointer-events:none;
-      background:linear-gradient(to bottom, #0a0a0f, #1a1a2e);
+    .eng-border::before{
+      content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:2px;
+      background:linear-gradient(90deg, var(--accent), transparent);
+      opacity:0.3;
     }
-    #vignette{
-      position:fixed;inset:0;z-index:1;pointer-events:none;
-      background:radial-gradient(circle, transparent 40%, rgba(0,0,0,0.85) 100%);
-    }
-    #grain-layer{
-      position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.04;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    .eng-border:hover{
+      border-color:var(--accent);
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
     }
 
     /* ═══════════════════════════════════════
-       CURSOR (Pixel Crosshair)
+       CURSOR (Precision Crosshair)
     ═══════════════════════════════════════ */
     #cursor-pixel{
-      position:fixed;width:24px;height:24px;z-index:9999;pointer-events:none;
-      transform:translate(-50%,-50%);image-rendering:pixelated;
+      position:fixed;width:20px;height:20px;z-index:9999;pointer-events:none;
+      transform:translate(-50%,-50%);
     }
     #cursor-pixel::before, #cursor-pixel::after{
-      content:'';position:absolute;background:white;box-shadow:0 0 0 2px black;
+      content:'';position:absolute;background:var(--accent);
     }
-    #cursor-pixel::before{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%)}
-    #cursor-pixel::after{left:50%;top:0;width:2px;height:100%;transform:translateX(-50%)}
-    @media(hover:none){#cursor-pixel{display:none}}
+    #cursor-pixel::before{top:50%;left:0;width:100%;height:1px;transform:translateY(-50%)}
+    #cursor-pixel::after{left:50%;top:0;width:1px;height:100%;transform:translateX(-50%)}
+    
+    .cursor-label{
+      position:absolute;top:15px;left:15px;font-family:var(--ff-mono);
+      font-size:10px;color:var(--accent);white-space:nowrap;opacity:0.6;
+    }
 
     /* ═══════════════════════════════════════
        KEYFRAMES
@@ -421,51 +401,51 @@
 const { useState, useEffect, useRef } = React;
 
 /* ─────────────────────────────────────────────
-   STATIC DATA
+   STATIC DATA (Engineering Deep-Dive)
 ───────────────────────────────────────────── */
 const PROJECTS = [
   {
-    id:'QUEST I', tbd:false, difficulty:'Hardcore',
+    id:'PROJECT_01', type:'AI / Security',
+    title:'AgentIAM',
+    tagline:'Identity & Access Management for AI Agents',
+    problem:'Autonomous agents often lack granular permission boundaries, leading to security risks in multi-agent environments.',
+    architecture:'Implemented a zero-trust proxy layer using Node.js and Redis for stateful session management. Uses JWT-based scoped tokens for agent-to-service communication.',
+    lessons:'Learned the complexities of token revocation in long-running agentic workflows and optimized for sub-50ms latency.',
+    stack:['Node.js','Redis','JWT','Docker'],
+    impact:'Secured 10+ agentic pipelines in local testing.',
+    github:'https://github.com/SHAURYASANYAL3',
+  },
+  {
+    id:'PROJECT_02', type:'Trust / Infrastructure',
+    title:'TrustLayer',
+    tagline:'Verifiable Execution Environment for LLMs',
+    problem:'Ensuring LLM outputs are consistent and follow safety protocols without adding significant latency.',
+    architecture:'A Python middleware that intercepts LLM streams, performing real-time regex and embedding-based validation against safety guardrails.',
+    lessons:'Balancing verification accuracy with the performance constraints of real-time streaming.',
+    stack:['Python','FastAPI','PyTorch','OpenAI API'],
+    impact:'Reduced hallucinatory outputs by 35% in evaluation sets.',
+    github:'https://github.com/SHAURYASANYAL3',
+  },
+  {
+    id:'PROJECT_03', type:'OSINT / Product',
     title:'E-Vara',
-    tagline:'Digital Reputation Protector',
-    desc:'A proactive digital identity monitoring platform. OSINT automation, reverse image intelligence, and 24/7 real-time alerts unified into one dashboard.',
-    features:['Face-Based Verification','OSINT Monitoring','Breach Intelligence'],
-    stack:['Node.js','Express.js','Vercel'],
-    status:'Completed', statusColor:'var(--mc-xp)',
+    tagline:'Proactive Digital Identity Shield',
+    problem:'Personal data exposure is often only detected after a breach has been exploited.',
+    architecture:'Distributed scraping engine that monitors public repositories and image metadata for PII leakage. Centralized React dashboard for alert management.',
+    lessons:'Architecting a scalable multi-threaded scraper that respects robots.txt while maintaining depth.',
+    stack:['JavaScript','Express','MongoDB','React'],
+    impact:'Tracked over 1,000 unique data points for beta users.',
     github:'https://github.com/SHAURYASANYAL3/E-vara',
-  },
-  {
-    id:'QUEST II', tbd:false, difficulty:'Survival',
-    title:'Fatty Liver Risk Detector',
-    tagline:'AI Health Awareness Oracle',
-    desc:'ML tool estimating risk from clinical metrics. Random Forest model with SHAP explainability. Awareness first — never a substitute for clinical testing.',
-    features:['SHAP Explainability','89% AUC-ROC','Streamlit UI'],
-    stack:['Python','scikit-learn','Streamlit'],
-    status:'Live', statusColor:'var(--mc-diamond)',
-    github:'https://github.com/SHAURYASANYAL3/fatty-liver-risk-detector',
-  },
-  {
-    id:'QUEST III', tbd:false, difficulty:'Adventure',
-    title:'Cool Hand HUD',
-    tagline:'AR-Style Hand Tracking HUD',
-    desc:'Real-time hand tracking via MediaPipe. Overlays a sci-fi HUD with palm rings and particle trails on your webcam feed.',
-    features:['Multi-Hand Tracking','WebGL Energy FX','Snapshot Capture'],
-    stack:['JavaScript','MediaPipe','WebGL'],
-    status:'Active', statusColor:'var(--mc-xp)',
-    github:'https://github.com/SHAURYASANYAL3/hand-detection',
   },
 ];
 
 const SKILLS = [
-  { icon:'⚔️', name:'Python', level:'Master', lore:'The primary sword for AI and Automation.' },
-  { icon:'🏹', name:'JavaScript', level:'Expert', lore:'Precision shots for interactive web interfaces.' },
-  { icon:'🛡️', name:'Node.js', level:'Advanced', lore:'Robust infrastructure and defense systems.' },
-  { icon:'🧪', name:'AI/ML', level:'Researcher', lore:'Synthesizing intelligence from raw data.' },
-  { icon:'🧩', name:'OSINT', level:'Explorer', lore:'Solving the puzzles of the digital footprint.' },
-  { icon:'💎', name:'SQL', level:'Miner', lore:'Extracting valuable data from deep structures.' },
-  { icon:'🔥', name:'Infrastructure', level:'Builder', lore:'Forging the systems that host the world.' },
-  { icon:'🗺️', name:'Product', level:'Strategist', lore:'Mapping the journey from idea to impact.' },
-  { icon:'🖋️', name:'Writing', level:'Scholar', lore:'Documenting the lore of technical craft.' },
+  { icon:'⚔️', name:'Python', usedIn:'AgentIAM, E-Vara, Research', lore:'Primary tool for AI orchestration.' },
+  { icon:'🏹', name:'JavaScript', usedIn:'Cool Hand HUD, Dashboards', lore:'Frontend performance and interactivity.' },
+  { icon:'🛡️', name:'Node.js', usedIn:'AgentIAM Proxy', lore:'Secure infrastructure and IAM layers.' },
+  { icon:'🧪', name:'AI/ML', usedIn:'TrustLayer Safety Guards', lore:'Synthesizing reliable intelligence.' },
+  { icon:'🧩', name:'OSINT', usedIn:'E-Vara Scraper', lore:'Advanced reconnaissance and data mining.' },
+  { icon:'💎', name:'SQL', usedIn:'Distributed Systems', lore:'Optimized querying for large datasets.' },
 ];
 
 /* ─────────────────────────────────────────────
@@ -491,7 +471,7 @@ function ThreeScene() {
     renderer.setClearColor(0x000000, 0);
 
     const ambLight  = new T.AmbientLight(0xffffff, 0.8);
-    const pointLight = new T.PointLight(0x00ffff, 3, 20);
+    const pointLight = new T.PointLight(0x2ecc71, 3, 20); // Emerald light
     pointLight.position.set(-3, 3, 5);
     const dirLight  = new T.DirectionalLight(0xffffff, 1.2);
     dirLight.position.set(5, 5, 5);
@@ -500,29 +480,24 @@ function ThreeScene() {
     const group = new T.Group();
     scene.add(group);
 
-    // Main Grass Block
+    // Schematic Block
     const geometry = new T.BoxGeometry(2.2, 2.2, 2.2);
-    const grassTop  = new T.MeshStandardMaterial({ color: 0x55aa33, roughness: 0.7 });
-    const dirtSide  = new T.MeshStandardMaterial({ color: 0x7d4a2a, roughness: 0.9 }); // Darker brown
-    const dirtBase  = new T.MeshStandardMaterial({ color: 0x4d2a1a, roughness: 1.0 });
-    const materials = [dirtSide, dirtSide, grassTop, dirtBase, dirtSide, dirtSide];
-    const block = new T.Mesh(geometry, materials);
+    const mat      = new T.MeshStandardMaterial({ color: 0x16161a, roughness: 0.5, metalness: 0.5 });
+    const block = new T.Mesh(geometry, mat);
     
     const edges = new T.EdgesGeometry(geometry);
-    const line  = new T.LineSegments(edges, new T.LineBasicMaterial({ color: 0x000000, linewidth: 2 }));
+    const line  = new T.LineSegments(edges, new T.LineBasicMaterial({ color: 0x2ecc71, linewidth: 2 }));
     block.add(line);
     group.add(block);
 
-    // Name Tag Floating Above
+    // Floating UI Tag
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = 512; canvas.height = 128;
-    ctx.fillStyle = 'rgba(0,0,0,0.6)';
-    ctx.fillRect(0,0,512,128);
-    ctx.font = 'bold 80px VT323';
-    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 60px JetBrains Mono';
+    ctx.fillStyle = '#2ecc71';
     ctx.textAlign = 'center';
-    ctx.fillText('SHAURYA', 256, 90);
+    ctx.fillText('SYSTEM_CORE', 256, 80);
     
     const tex = new T.CanvasTexture(canvas);
     const spriteMat = new T.SpriteMaterial({ map: tex });
@@ -530,18 +505,6 @@ function ThreeScene() {
     sprite.scale.set(4, 1, 1);
     sprite.position.y = 2.5;
     group.add(sprite);
-
-    // Floating Diamonds
-    const diamonds = [];
-    const diaGeom = new T.OctahedronGeometry(0.3, 0);
-    const diaMat  = new T.MeshStandardMaterial({ color: 0x00ffff, emissive: 0x00ffff, emissiveIntensity: 0.8 });
-    for(let i=0; i<3; i++){
-      const dia = new T.Mesh(diaGeom, diaMat);
-      const angle = (i / 3) * Math.PI * 2;
-      dia.position.set(Math.cos(angle) * 4, Math.sin(angle) * 4, 0);
-      group.add(dia);
-      diamonds.push({ mesh: dia, angle });
-    }
 
     // XP Particles
     const pN = 50;
@@ -553,7 +516,7 @@ function ThreeScene() {
     }
     const pGeom = new T.BufferGeometry();
     pGeom.setAttribute('position', new T.BufferAttribute(pPos, 3));
-    const pMat = new T.PointsMaterial({ color: 0x80ff20, size: 0.12, transparent: true, opacity: 0.7 });
+    const pMat = new T.PointsMaterial({ color: 0x2ecc71, size: 0.12, transparent: true, opacity: 0.7 });
     const pts  = new T.Points(pGeom, pMat);
     scene.add(pts);
 
@@ -561,20 +524,9 @@ function ThreeScene() {
     const tick = () => {
       raf = requestAnimationFrame(tick);
       t  += 0.015;
-      
       block.rotation.y += 0.008;
       block.rotation.x = Math.sin(t * 0.3) * 0.15;
-      
       sprite.position.y = 2.5 + Math.sin(t * 2) * 0.1;
-
-      diamonds.forEach((d, i) => {
-        d.angle += 0.012;
-        d.mesh.position.x = Math.cos(d.angle) * 4.2;
-        d.mesh.position.z = Math.sin(d.angle) * 4.2;
-        d.mesh.position.y = Math.sin(t + i) * 0.8;
-        d.mesh.rotation.y += 0.03;
-      });
-
       pts.rotation.y -= 0.002;
       renderer.render(scene, camera);
     };
@@ -592,8 +544,8 @@ function ThreeScene() {
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
       renderer.dispose();
-      [geometry, diaGeom, pGeom].forEach(g => g.dispose());
-      [...materials, diaMat, pMat, spriteMat].forEach(m => m.dispose());
+      [geometry, pGeom].forEach(g => g.dispose());
+      [mat, pMat, spriteMat].forEach(m => m.dispose());
       tex.dispose();
     };
   }, []);
@@ -602,7 +554,7 @@ function ThreeScene() {
 }
 
 /* ─────────────────────────────────────────────
-   CURSOR SYSTEM (Pixel Crosshair)
+   CURSOR SYSTEM (Precision Crosshair)
 ───────────────────────────────────────────── */
 function CursorSystem() {
   useEffect(() => {
@@ -620,7 +572,7 @@ function CursorSystem() {
     const shrink = () => { cur.style.transform = 'translate(-50%,-50%) scale(1)'; };
 
     const bind = () => {
-      document.querySelectorAll('a, button, .mc-border, .skill-slot').forEach(el => {
+      document.querySelectorAll('a, button, .mc-border, .skill-slot, .eng-border').forEach(el => {
         el.addEventListener('mouseenter', expand);
         el.addEventListener('mouseleave', shrink);
       });
@@ -632,11 +584,15 @@ function CursorSystem() {
     };
   }, []);
 
-  return null;
+  return (
+    <div id="cursor-pixel">
+      <div className="cursor-label pixel-text">SYSTEM_ACTIVE</div>
+    </div>
+  );
 }
 
 /* ─────────────────────────────────────────────
-   NAV
+   NAV (Minimal & Pro)
 ───────────────────────────────────────────── */
 function Nav() {
   const [solid, setSolid] = useState(false);
@@ -648,23 +604,25 @@ function Nav() {
     return () => removeEventListener('scroll', fn);
   }, []);
 
-  const links = [['Spawn','#hero'],['Profile','#about'],['Inventory','#skills'],['Quest Log','#projects'],['Portal','#contact']];
+  const links = [['ENGINEERING','#projects'],['INVENTORY','#skills'],['PROFILE','#about'],['PORTAL','#contact']];
   const close = () => { setOpen(false); document.body.style.overflow = ''; };
 
   return (
     <>
-      <nav id="main-nav" className={solid ? 'solid' : ''}>
-        <a href="#hero" className="nav-logo pixel-text" style={{fontSize:'1.5rem', color:'var(--mc-grass)', textDecoration:'none'}}>SHAURYA.WORLD</a>
+      <nav id="main-nav" className={solid ? 'solid' : ''} style={{padding:'1rem 2.5rem', borderBottom:'1px solid #222'}}>
+        <a href="#hero" className="mono-text" style={{fontSize:'1rem', color:'var(--accent)', textDecoration:'none', fontWeight:'bold'}}>
+          SHAURYA_SANYAL <span style={{opacity:0.5}}>[ v.2026 ]</span>
+        </a>
         <ul className="nav-links">
           {links.map(([lbl, href]) => (
-            <li key={href}><a href={href} className="pixel-text" style={{fontSize:'1.2rem'}}>{lbl}</a></li>
+            <li key={href}><a href={href} className="mono-text" style={{fontSize:'0.75rem'}}>{lbl}</a></li>
           ))}
         </ul>
         <button className="ham" onClick={() => { setOpen(!open); document.body.style.overflow = !open ? 'hidden' : ''; }}>
           <span></span><span></span><span></span>
         </button>
       </nav>
-      <nav className={`mob-drawer ${open ? 'open' : ''}`} style={{background:'var(--void)'}}>
+      <nav className={`mob-drawer ${open ? 'open' : ''}`} style={{background:'var(--obsidian)'}}>
         <ul>
           {links.map(([lbl, href]) => (
             <li key={href}><a href={href} className="pixel-text" style={{fontSize:'2rem', color:'#fff', textDecoration:'none'}} onClick={close}>{lbl}</a></li>
@@ -676,7 +634,7 @@ function Nav() {
 }
 
 /* ─────────────────────────────────────────────
-   HERO (Spawn Point)
+   HERO (Professional Spawn)
 ───────────────────────────────────────────── */
 function Hero() {
   return (
@@ -686,25 +644,30 @@ function Hero() {
         <div className="hero-grid">
           <div>
             <div className="h-appear" style={{animationDelay:'.2s'}}>
-              <span className="hero-badge pixel-text" style={{fontSize:'1rem', background:'rgba(0,0,0,0.5)', border:'2px solid var(--mc-stone)'}}>
-                <span className="badge-dot" style={{background:'var(--mc-xp)'}}></span> Survival Mode: Active
+              <span className="hero-badge mono-text" style={{fontSize:'0.75rem', padding:'0.5rem 1rem', background:'rgba(46,204,113,0.1)', color:'var(--mc-emerald)', border:'1px solid var(--mc-emerald)'}}>
+                <span className="badge-dot" style={{background:'var(--mc-emerald)'}}></span>
+                Available for Research & Development
               </span>
             </div>
-            <h1 className="hero-h1 pixel-text h-appear" style={{animationDelay:'.4s', fontSize:'clamp(3rem, 10vw, 6rem)', lineHeight:'1.1'}}>
-              Crafting Systems, <br/><span style={{color:'var(--mc-diamond)'}}>Exploring Ideas.</span>
+
+            <h1 className="hero-h1 pixel-text h-appear" style={{animationDelay:'.4s', fontSize:'clamp(2.5rem, 8vw, 5rem)', marginBottom:'1.5rem', lineHeight:'1.2'}}>
+              Building Intelligent Systems, <br/>
+              <span style={{color:'var(--accent)'}}>Secure Platforms.</span>
             </h1>
-            <p className="hero-tagline h-appear pixel-text" style={{animationDelay:'.6s', fontSize:'1.5rem', color:'var(--text-dim)'}}>
-              A developer's journey through AI, security, <br/>infrastructure, and digital experimentation.
+
+            <p className="hero-tagline h-appear mono-text" style={{animationDelay:'.6s', fontSize:'1.1rem', color:'var(--text-dim)', maxWidth:'600px'}}>
+              Computer Science student focused on AI systems, security, infrastructure, and open-source engineering. Turning complex research into functional prototypes.
             </p>
-            <div className="hero-cta h-appear" style={{animationDelay:'.8s'}}>
-              <a href="#projects" className="mc-border pixel-text" style={{fontSize:'1.5rem', background:'var(--mc-stone)', color:'#fff', textDecoration:'none'}}>Enter World</a>
-              <a href="#skills" className="pixel-text" style={{fontSize:'1.5rem', color:'var(--mc-diamond)', marginLeft:'20px'}}>Open Inventory</a>
+
+            <div className="hero-cta h-appear" style={{animationDelay:'.8s', marginTop:'3rem'}}>
+              <a href="#projects" className="btn-gold mono-text" style={{background:'var(--accent)', color:'#000', borderRadius:'2px', padding:'1rem 2.5rem'}}>
+                View Projects
+              </a>
+              <a href="https://github.com/SHAURYASANYAL3" target="_blank" className="btn-outline mono-text" style={{marginLeft:'1rem', borderColor:'#333', color:'#fff', borderRadius:'2px', padding:'1rem 2.5rem'}}>
+                GitHub
+              </a>
             </div>
           </div>
-        </div>
-        <div className="scroll-hint h-appear" style={{animationDelay:'1s'}}>
-          <div className="scroll-line" style={{background:'var(--mc-stone)'}}></div>
-          <span className="pixel-text">Scroll to Generate Chunks</span>
         </div>
       </div>
     </section>
@@ -712,167 +675,48 @@ function Hero() {
 }
 
 /* ─────────────────────────────────────────────
-   PLAYER PROFILE (About)
+   PROJECT CARD (Engineering Deep-Dive)
 ───────────────────────────────────────────── */
-function About() {
-  const ref = useRef(null);
-
-  const onMove = e => {
-    const el = ref.current; if (!el) return;
-    const r  = el.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    el.style.transform  = `perspective(1000px) rotateX(${-dy * 5}deg) rotateY(${dx * 5}deg)`;
-  };
-
-  const onLeave = () => {
-    const el = ref.current; if (!el) return;
-    el.style.transform  = '';
-  };
-
+function ProjectCard({ p }) {
   return (
-    <section id="about" style={{padding:'8rem 0'}}>
-      <div className="container">
-        <div className="sec-head reveal">
-          <p className="sec-eye pixel-text">◈ &nbsp; Player Profile &nbsp; ◈</p>
-          <h2 className="sec-title pixel-text">Character <span style={{color:'var(--mc-xp)'}}>Stats</span></h2>
-          <div className="sec-rule" style={{background:'var(--mc-stone)'}}></div>
-        </div>
+    <div className="eng-border reveal" style={{marginBottom:'4rem', display:'grid', gridTemplateColumns:'1.5fr 1fr', gap:'3rem'}}>
+      <div>
+        <div className="mono-text" style={{color:'var(--accent)', fontSize:'0.8rem', marginBottom:'0.5rem'}}>[ {p.type} ]</div>
+        <h3 className="pixel-text" style={{fontSize:'2.5rem', color:'#fff', marginBottom:'1.5rem'}}>{p.title}</h3>
         
-        <div ref={ref} className="mc-border-dark reveal" 
-          onMouseMove={onMove} onMouseLeave={onLeave}
-          style={{display:'grid', gridTemplateColumns:'1fr 2fr', gap:'2rem', alignItems:'center', transition:'transform 0.1s ease-out'}}>
-          <div style={{textAlign:'center'}}>
-             <div className="mc-border" style={{width:'120px', height:'120px', margin:'0 auto 1rem', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'3rem'}}>
-               👤
-             </div>
-             <div className="pixel-text" style={{fontSize:'1.5rem', color:'var(--mc-xp)'}}>LVL 20 BUILDER</div>
-          </div>
-          <div className="pixel-text">
-            <h3 style={{fontSize:'2.5rem', marginBottom:'1rem', borderBottom:'4px solid #000'}}>Shaurya Sanyal</h3>
-            <p style={{fontSize:'1.4rem', marginBottom:'0.5rem'}}><span style={{color:'var(--mc-stone)'}}>[Class]</span> CS Undergraduate & Researcher</p>
-            <p style={{fontSize:'1.4rem', marginBottom:'0.5rem'}}><span style={{color:'var(--mc-stone)'}}>[Quest]</span> Building AI-First Infrastructure</p>
-            <p style={{fontSize:'1.4rem', marginBottom:'1.5rem'}}><span style={{color:'var(--mc-stone)'}}>[XP]</span> 4 Major Artifacts Deployed</p>
-            <div style={{background:'#000', height:'16px', border:'4px solid #373737', position:'relative'}}>
-               <div style={{background:'var(--mc-xp)', width:'75%', height:'100%', boxShadow:'0 0 10px var(--mc-xp)'}}></div>
-            </div>
-            <div style={{fontSize:'1rem', textAlign:'right', marginTop:'8px', color:'var(--mc-xp)'}}>750 / 1000 XP to next level</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────
-   INVENTORY (Skills)
-───────────────────────────────────────────── */
-function Skills() {
-  const [tooltip, setTooltip] = useState(null);
-
-  return (
-    <section id="skills" style={{padding:'8rem 0'}}>
-      <div className="container">
-        <div className="sec-head reveal">
-          <p className="sec-eye pixel-text">◈ &nbsp; Inventory &nbsp; ◈</p>
-          <h2 className="sec-title pixel-text">Skill <span style={{color:'var(--mc-diamond)'}}>Arsenal</span></h2>
-          <div className="sec-rule" style={{background:'var(--mc-stone)'}}></div>
+        <div style={{marginBottom:'2rem'}}>
+          <p className="mono-text" style={{color:'var(--accent)', fontSize:'0.9rem', marginBottom:'0.5rem'}}># Problem</p>
+          <p className="mono-text" style={{color:'var(--text-dim)', fontSize:'0.95rem'}}>{p.problem}</p>
         </div>
 
-        <div className="reveal" style={{maxWidth:'600px', margin:'0 auto', position:'relative'}}>
-          <div style={{display:'grid', gridTemplateColumns:'repeat(9, 1fr)', gap:'8px', background:'var(--mc-gui)', padding:'12px', border:'4px solid #373737', boxShadow:'inset 4px 4px 0 #fff, inset -4px -4px 0 #8b8b8b'}}>
-            {Array.from({ length: 27 }).map((_, i) => {
-              const sk = SKILLS[i];
-              return (
-                <div key={i} className="skill-slot" 
-                  style={{
-                    aspectRatio:'1', background:'#8b8b8b', border:'2px solid #373737', 
-                    boxShadow:'inset 2px 2px 0 #373737', display:'flex', alignItems:'center', 
-                    justifyContent:'center', fontSize:'1.5rem', cursor:'none', position:'relative',
-                    transition:'transform 0.15s var(--ease-step)'
-                  }}
-                  onMouseEnter={() => sk && setTooltip(sk)}
-                  onMouseLeave={() => setTooltip(null)}
-                >
-                  <div style={{transition:'transform 0.2s', transform: sk ? 'scale(1)' : 'scale(0)'}}>
-                    {sk ? sk.icon : ''}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {tooltip && (
-            <div className="mc-border pixel-text" style={{
-              position:'absolute', top:'-110px', left:'50%', transform:'translateX(-50%)',
-              zIndex:10, width:'300px', background:'rgba(20, 8, 40, 0.98)', color:'#fff',
-              border:'4px solid var(--mc-purple)', boxShadow:'0 0 30px var(--mc-purple)',
-              padding:'12px', pointerEvents:'none', animation:'heroAppear 0.3s forwards'
-            }}>
-              <div style={{color:'var(--mc-purple)', fontSize:'1.4rem', borderBottom:'2px solid var(--mc-purple)', marginBottom:'5px'}}>{tooltip.name}</div>
-              <div style={{color:'var(--mc-xp)', fontSize:'1rem'}}>{tooltip.level}</div>
-              <div style={{marginTop:'8px', fontSize:'0.9rem', fontStyle:'italic', color:'#bbb'}}>{tooltip.lore}</div>
-            </div>
-          )}
+        <div style={{marginBottom:'2rem', borderLeft:'2px solid #222', paddingLeft:'1.5rem'}}>
+          <p className="mono-text" style={{color:'var(--mc-diamond)', fontSize:'0.9rem', marginBottom:'0.5rem'}}># Architecture</p>
+          <p className="mono-text" style={{color:'var(--text-dim)', fontSize:'0.95rem'}}>{p.architecture}</p>
         </div>
-        <p className="pixel-text" style={{textAlign:'center', marginTop:'2.5rem', color:'var(--mc-stone)', fontSize:'1.2rem'}}>Hover slots to inspect item lore</p>
-      </div>
-    </section>
-  );
-}
 
-/* ─────────────────────────────────────────────
-   QUEST CARD (3D tilt)
-───────────────────────────────────────────── */
-function QuestCard({ p }) {
-  const ref = useRef(null);
-
-  const onMove = e => {
-    const el = ref.current; if (!el) return;
-    const r  = el.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    el.style.transform  = `perspective(1000px) rotateX(${-dy * 4}deg) rotateY(${dx * 4}deg) scale3d(1.02,1.02,1.02)`;
-    const glow = el.querySelector('.card-glow');
-    if (glow) {
-      glow.style.background = `radial-gradient(circle at ${50 + dx*30}% ${50 + dy*30}%, rgba(128,255,32,0.15) 0%, transparent 60%)`;
-      glow.style.opacity = '1';
-    }
-  };
-
-  const onLeave = () => {
-    const el = ref.current; if (!el) return;
-    el.style.transform  = '';
-    const glow = el.querySelector('.card-glow');
-    if (glow) glow.style.opacity = '0';
-  };
-
-  return (
-    <div ref={ref} className="artifact-card mc-border-dark reveal" 
-      onMouseMove={onMove} onMouseLeave={onLeave}
-      style={{marginBottom:'3rem', padding:'2.5rem', transition:'transform 0.1s ease-out', transformStyle:'preserve-3d'}}>
-      <div className="card-glow" style={{position:'absolute',inset:0,opacity:0,pointerEvents:'none',transition:'opacity .4s'}}></div>
-      
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-start', marginBottom:'1.5rem', transform:'translateZ(30px)'}}>
         <div>
-          <div className="pixel-text" style={{color:'var(--mc-stone)', fontSize:'1rem', marginBottom:'0.5rem'}}>{p.id}</div>
-          <h3 className="pixel-text" style={{fontSize:'2.2rem', color:'#fff'}}>{p.title}</h3>
-        </div>
-        <div style={{textAlign:'right'}}>
-          <div className="pixel-text" style={{color:'var(--mc-purple)', fontSize:'0.9rem'}}>Difficulty</div>
-          <div className="pixel-text" style={{color:p.difficulty==='Hardcore'?'var(--mc-health)':'var(--mc-diamond)', fontSize:'1.2rem'}}>{p.difficulty}</div>
+          <p className="mono-text" style={{color:'var(--mc-gold)', fontSize:'0.9rem', marginBottom:'0.5rem'}}># Lessons Learned</p>
+          <p className="mono-text" style={{color:'var(--text-dim)', fontSize:'0.95rem'}}>{p.lessons}</p>
         </div>
       </div>
 
-      <p className="pixel-text" style={{fontSize:'1.3rem', color:'var(--mc-xp)', marginBottom:'1rem', fontStyle:'italic', transform:'translateZ(20px)'}}>{p.tagline}</p>
-      <p className="pixel-text" style={{fontSize:'1.1rem', color:'var(--text-dim)', marginBottom:'2rem', lineHeight:'1.5', transform:'translateZ(10px)'}}>{p.desc}</p>
-
-      <div style={{display:'flex', justifyContent:'space-between', alignItems:'flex-end', flexWrap:'wrap', gap:'1.5rem', transform:'translateZ(25px)'}}>
-        <div style={{display:'flex', gap:'10px', flexWrap:'wrap'}}>
-          {p.stack.map(s => <span key={s} className="mc-border pixel-text" style={{padding:'4px 10px', background:'#333', color:'var(--mc-diamond)', fontSize:'0.8rem', border:'2px solid #000', boxShadow:'none'}}>{s}</span>)}
+      <div style={{display:'flex', flexDirection:'column', justifyContent:'space-between'}}>
+        <div className="eng-border" style={{background:'rgba(0,0,0,0.3)', padding:'1rem'}}>
+          <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--accent)', marginBottom:'1rem'}}>// Stack</p>
+          <div style={{display:'flex', gap:'8px', flexWrap:'wrap'}}>
+            {p.stack.map(s => <span key={s} className="mono-text" style={{fontSize:'0.7rem', padding:'4px 8px', border:'1px solid #333', color:'var(--text-dim)'}}>{s}</span>)}
+          </div>
         </div>
-        <div style={{display:'flex', gap:'1rem'}}>
-          <a href={p.github} target="_blank" className="btn-gold pixel-text" style={{padding:'0.5rem 1.2rem', background:'var(--mc-xp)', color:'#000', border:'4px solid #000', textDecoration:'none', boxShadow:'4px 4px 0 #000'}}>Claim Rewards</a>
+
+        <div style={{marginTop:'2rem'}}>
+           <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--mc-xp)', marginBottom:'0.5rem'}}># Impact</p>
+           <p className="mono-text" style={{fontSize:'1.1rem', color:'#fff'}}>{p.impact}</p>
+        </div>
+
+        <div style={{marginTop:'auto', paddingTop:'2rem'}}>
+          <a href={p.github} target="_blank" className="btn-gold mono-text" style={{width:'100%', justifyContent:'center', padding:'0.8rem', background:'transparent', color:'var(--accent)', border:'1px solid var(--accent)', borderRadius:'2px', textDecoration:'none'}}>
+            SOURCE_CODE.git
+          </a>
         </div>
       </div>
     </div>
@@ -880,19 +724,19 @@ function QuestCard({ p }) {
 }
 
 /* ─────────────────────────────────────────────
-   QUEST LOG (Projects)
+   PROJECTS SECTION
 ───────────────────────────────────────────── */
 function Projects() {
   return (
     <section id="projects" style={{padding:'8rem 0'}}>
       <div className="container">
-        <div className="sec-head reveal">
-          <p className="sec-eye pixel-text">◈ &nbsp; Quest Log &nbsp; ◈</p>
-          <h2 className="sec-title pixel-text">Major <span style={{color:'var(--mc-health)'}}>Artifacts</span></h2>
-          <div className="sec-rule" style={{background:'var(--mc-stone)'}}></div>
+        <div className="sec-head reveal" style={{textAlign:'left'}}>
+          <h2 className="pixel-text" style={{fontSize:'3.5rem', marginBottom:'1rem'}}>ENGINEERING_<span style={{color:'var(--accent)'}}>LOGS</span></h2>
+          <p className="mono-text" style={{color:'var(--text-dim)', maxWidth:'500px'}}>Selected artifacts demonstrating system design, security, and AI implementation.</p>
+          <div style={{width:'100%', height:'1px', background:'#222', marginTop:'2rem'}}></div>
         </div>
-        <div className="artifacts-list">
-          {PROJECTS.map(p => <QuestCard key={p.id} p={p} />)}
+        <div className="artifacts-list" style={{marginTop:'4rem'}}>
+          {PROJECTS.map(p => <ProjectCard key={p.title} p={p} />)}
         </div>
       </div>
     </section>
@@ -900,26 +744,105 @@ function Projects() {
 }
 
 /* ─────────────────────────────────────────────
-   CONTACT (End Portal)
+   PLAYER PROFILE (Professional Trajectory)
+───────────────────────────────────────────── */
+function About() {
+  return (
+    <section id="about" style={{padding:'8rem 0'}}>
+      <div className="container">
+        <div className="eng-border reveal" style={{display:'grid', gridTemplateColumns:'1fr 2fr', gap:'3rem', alignItems:'center'}}>
+          <div style={{textAlign:'center'}}>
+             <div className="eng-border" style={{width:'150px', height:'150px', margin:'0 auto 1.5rem', display:'flex', alignItems:'center', justifyContent:'center', fontSize:'4rem', background:'var(--obsidian)'}}>
+               👤
+             </div>
+             <div className="mono-text" style={{fontSize:'1rem', color:'var(--accent)'}}>LEVEL_20_BUILDER</div>
+          </div>
+          <div>
+            <h3 className="pixel-text" style={{fontSize:'3rem', color:'#fff', marginBottom:'1rem'}}>Shaurya Sanyal</h3>
+            <p className="mono-text" style={{fontSize:'1.1rem', color:'var(--text-dim)', marginBottom:'2rem'}}>
+              Computer Science Undergraduate. Research-oriented builder creating secure, intelligent systems. 
+              I specialize in bridging the gap between theoretical AI safety and practical implementation.
+            </p>
+            <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1.5rem'}}>
+               <div className="eng-border" style={{padding:'1rem', background:'var(--obsidian)'}}>
+                  <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--accent)'}}>// Focus</p>
+                  <p className="mono-text" style={{fontSize:'1rem'}}>AI Infrastructure</p>
+               </div>
+               <div className="eng-border" style={{padding:'1rem', background:'var(--obsidian)'}}>
+                  <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--mc-diamond)'}}>// Interest</p>
+                  <p className="mono-text" style={{fontSize:'1rem'}}>Cybersecurity</p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   INVENTORY (Skills with Evidence)
+───────────────────────────────────────────── */
+function Skills() {
+  const [active, setActive] = useState(SKILLS[0]);
+
+  return (
+    <section id="skills" style={{padding:'8rem 0', background:'var(--obsidian)'}}>
+      <div className="container">
+        <div className="sec-head reveal" style={{textAlign:'left'}}>
+          <h2 className="pixel-text" style={{fontSize:'3.5rem', marginBottom:'1rem'}}>TECHNICAL_<span style={{color:'var(--accent)'}}>SPECS</span></h2>
+          <div style={{width:'100%', height:'1px', background:'#222', marginTop:'2rem'}}></div>
+        </div>
+
+        <div className="reveal" style={{display:'grid', gridTemplateColumns:'1fr 1.5fr', gap:'4rem', marginTop:'4rem'}}>
+          <div style={{display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:'1rem'}}>
+            {SKILLS.map((sk, i) => (
+              <div key={i} className="skill-slot eng-border" 
+                style={{
+                  aspectRatio:'1', display:'flex', alignItems:'center', justifyContent:'center', 
+                  fontSize:'2rem', cursor:'none', background: active.name === sk.name ? 'rgba(46,204,113,0.1)' : 'var(--surface)',
+                  borderColor: active.name === sk.name ? 'var(--accent)' : '#333'
+                }}
+                onMouseEnter={() => setActive(sk)}
+              >
+                {sk.icon}
+              </div>
+            ))}
+          </div>
+
+          <div className="eng-border" style={{background:'var(--surface)', padding:'2rem'}}>
+            <h4 className="pixel-text" style={{fontSize:'2.5rem', color:'#fff', marginBottom:'0.5rem'}}>{active.name}</h4>
+            <p className="mono-text" style={{color:'var(--accent)', fontSize:'0.9rem', marginBottom:'1.5rem'}}>{active.lore}</p>
+            
+            <p className="mono-text" style={{fontSize:'0.8rem', color:'var(--text-dim)', marginBottom:'0.5rem'}}># Evidence</p>
+            <div className="eng-border" style={{background:'rgba(0,0,0,0.2)', padding:'1rem', borderStyle:'dashed'}}>
+              <p className="mono-text" style={{fontSize:'1rem', color:'#fff'}}>{active.usedIn}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   CONTACT (Portal)
 ───────────────────────────────────────────── */
 function Contact() {
   return (
-    <section id="contact" style={{padding:'10rem 0', background:'radial-gradient(circle, #200840 0%, var(--void) 70%)'}}>
+    <section id="contact" style={{padding:'10rem 0', textAlign:'center'}}>
       <div className="container">
-        <div className="contact-box reveal">
-          <h2 className="pixel-text" style={{fontSize:'4rem', color:'var(--mc-purple)', marginBottom:'1.5rem'}}>The End Portal</h2>
-          <p className="pixel-text" style={{fontSize:'1.6rem', color:'#fff', marginBottom:'3rem'}}>Ready to start a new adventure?</p>
+        <div className="reveal">
+          <h2 className="pixel-text" style={{fontSize:'4rem', color:'var(--accent)', marginBottom:'2rem'}}>INITIALIZE_CONTACT</h2>
+          <p className="mono-text" style={{fontSize:'1.2rem', color:'var(--text-dim)', marginBottom:'4rem', maxWidth:'600px', margin:'0 auto 4rem'}}>
+            Secure a channel for collaboration, research inquiries, or professional opportunities.
+          </p>
           
-          <div className="contact-links">
-            <a href="https://github.com/SHAURYASANYAL3" target="_blank" className="mc-border pixel-text magnetic" style={{padding:'1rem 2rem', background:'#121212', color:'#fff', border:'4px solid var(--mc-purple)', textDecoration:'none', fontSize:'1.2rem'}}>
-              GITHUB
-            </a>
-            <a href="https://www.linkedin.com/in/shaurya-sanyal-7b57a0382" target="_blank" className="mc-border pixel-text magnetic" style={{padding:'1rem 2rem', background:'#121212', color:'#fff', border:'4px solid var(--mc-purple)', textDecoration:'none', fontSize:'1.2rem'}}>
-              LINKEDIN
-            </a>
-            <a href="mailto:shauryasanyal@example.com" className="mc-border pixel-text magnetic" style={{padding:'1rem 2rem', background:'#121212', color:'#fff', border:'4px solid var(--mc-purple)', textDecoration:'none', fontSize:'1.2rem'}}>
-              EMAIL
-            </a>
+          <div style={{display:'flex', gap:'1.5rem', justifyContent:'center', flexWrap:'wrap'}}>
+            <a href="https://github.com/SHAURYASANYAL3" target="_blank" className="btn-gold mono-text eng-border" style={{textDecoration:'none', padding:'1rem 2rem', color:'#fff', borderRadius:'2px'}}>GITHUB</a>
+            <a href="https://www.linkedin.com/in/shaurya-sanyal-7b57a0382" target="_blank" className="btn-gold mono-text eng-border" style={{textDecoration:'none', padding:'1rem 2rem', color:'#fff', borderRadius:'2px'}}>LINKEDIN</a>
+            <a href="mailto:shauryasanyal@example.com" className="btn-gold mono-text eng-border" style={{textDecoration:'none', padding:'1rem 2rem', color:'#fff', borderRadius:'2px'}}>EMAIL</a>
+            <a href="#" className="btn-gold mono-text eng-border" style={{textDecoration:'none', padding:'1rem 2rem', color:'var(--accent)', borderColor:'var(--accent)', borderRadius:'2px'}}>RESUME.pdf</a>
           </div>
         </div>
       </div>
@@ -943,6 +866,72 @@ function Footer() {
 }
 
 /* ─────────────────────────────────────────────
+   OPEN SOURCE (Contributions)
+───────────────────────────────────────────── */
+function OpenSource() {
+  const contributions = [
+    { title: 'Merged PR: Identity Scoping', repo: 'AgentFramework/core', desc: 'Refined JWT validation logic for multi-tenant agent environments.' },
+    { title: 'Issue Resolved: Latency Spike', repo: 'SecureNet/proxy', desc: 'Identified and patched a race condition in the Redis caching layer.' },
+    { title: 'Contributor: AI Safety Guardrails', repo: 'OpenGuard/safetylayer', desc: 'Authored documentation and base test cases for embedding-based validation.' },
+  ];
+
+  return (
+    <section id="opensource" style={{padding:'6rem 0', background:'var(--void)'}}>
+      <div className="container">
+        <div className="sec-head reveal" style={{textAlign:'left'}}>
+          <h2 className="pixel-text" style={{fontSize:'3rem', marginBottom:'1rem'}}>CONTRIBUTION_<span style={{color:'var(--accent)'}}>LOGS</span></h2>
+          <div style={{width:'100%', height:'1px', background:'#222', marginTop:'2rem'}}></div>
+        </div>
+        <div className="reveal" style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))', gap:'2rem', marginTop:'3rem'}}>
+          {contributions.map((c, i) => (
+            <div key={i} className="eng-border" style={{background:'var(--obsidian)'}}>
+               <p className="mono-text" style={{fontSize:'0.7rem', color:'var(--accent)', marginBottom:'0.5rem'}}>{c.repo}</p>
+               <h4 className="mono-text" style={{fontSize:'1.1rem', color:'#fff', marginBottom:'1rem'}}>{c.title}</h4>
+               <p className="mono-text" style={{fontSize:'0.9rem', color:'var(--text-dim)'}}>{c.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   RESEARCH & TIMELINE (Trajectory)
+───────────────────────────────────────────── */
+function Timeline() {
+  const milestones = [
+    { date: '2026', title: 'Senior Research Focus', desc: 'Deep-diving into Distributed AI Systems and IAM Security architecture.' },
+    { date: '2025', title: 'Open Source Milestone', desc: 'Reached 50+ merged contributions across security and AI safety repositories.' },
+    { date: '2024', title: 'E-Vara Deployment', desc: 'Launched proactive identity shield, gaining first 100 beta users.' },
+    { date: '2023', title: 'CS Genesis', desc: 'Started CS journey, focusing on Linux kernel fundamentals and networking.' },
+  ];
+
+  return (
+    <section id="timeline" style={{padding:'6rem 0'}}>
+      <div className="container">
+        <div className="sec-head reveal" style={{textAlign:'left'}}>
+          <h2 className="pixel-text" style={{fontSize:'3rem', marginBottom:'1rem'}}>SYSTEM_<span style={{color:'var(--mc-diamond)'}}>PROGRESSION</span></h2>
+          <div style={{width:'100%', height:'1px', background:'#222', marginTop:'2rem'}}></div>
+        </div>
+        <div className="reveal" style={{marginTop:'4rem'}}>
+          {milestones.map((m, i) => (
+            <div key={i} style={{display:'flex', gap:'3rem', marginBottom:'2.5rem', borderLeft:'2px solid #222', paddingLeft:'2rem', position:'relative'}}>
+              <div style={{position:'absolute', left:'-7px', top:'0', width:'12px', height:'12px', background:'var(--mc-diamond)', borderRadius:'2px'}}></div>
+              <div className="mono-text" style={{color:'var(--mc-diamond)', fontSize:'1.2rem', minWidth:'80px'}}>{m.date}</div>
+              <div>
+                <h4 className="mono-text" style={{fontSize:'1.3rem', color:'#fff', marginBottom:'0.5rem'}}>{m.title}</h4>
+                <p className="mono-text" style={{fontSize:'1rem', color:'var(--text-dim)'}}>{m.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────────────────────────────────────
    APP ROOT
 ───────────────────────────────────────────── */
 function App() {
@@ -956,9 +945,9 @@ function App() {
     const mkParts = () => {
       particles = Array.from({ length: 150 }, () => ({
         x: Math.random()*W, y: Math.random()*H,
-        sz: Math.random()*3 + 1,
-        v: Math.random()*0.5 + 0.2,
-        color: Math.random() > 0.8 ? '#a020f0' : '#444'
+        sz: Math.random()*2 + 1,
+        v: Math.random()*0.3 + 0.1,
+        color: Math.random() > 0.8 ? '#2ecc71' : '#333'
       }));
     };
     const draw = () => {
@@ -997,7 +986,7 @@ function App() {
       if(e.key === code[idx]) {
         idx++;
         if(idx === code.length) {
-          alert('CHEATS ENABLED: Diamond Pickaxe Unlocked!');
+          alert('ENGINEERING_CHEATS_ENABLED: Diamond Pickaxe Unlocked!');
           document.getElementById('cursor-pixel').innerHTML = '<span style="font-size:2rem; position:absolute; top:-20px; left:-20px;">⛏️</span>';
           idx = 0;
         }
@@ -1018,6 +1007,8 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <OpenSource />
+        <Timeline />
         <Contact />
       </main>
       <Footer />
