@@ -400,8 +400,7 @@
 <div id="scroll-bar"></div>
 
 <!-- ── CURSOR ── -->
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
+<div id="cursor-pixel"></div>
 
 <!-- ── REACT ROOT ── -->
 <div id="root"></div>
@@ -486,44 +485,49 @@ function ThreeScene() {
 
     const renderer = new T.WebGLRenderer({ canvas: el, antialias: false, alpha: true });
     renderer.setSize(W, H);
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1));
+    renderer.setPixelRatio(1); // Keep it sharp/pixelated
     renderer.setClearColor(0x000000, 0);
 
-    const ambLight  = new T.AmbientLight(0xffffff, 0.6);
-    const dirLight  = new T.DirectionalLight(0xffffff, 0.8);
+    const ambLight  = new T.AmbientLight(0xffffff, 0.8);
+    const dirLight  = new T.DirectionalLight(0xffffff, 1.2);
     dirLight.position.set(5, 5, 5);
     scene.add(ambLight, dirLight);
 
-    const geometry = new T.BoxGeometry(1.8, 1.8, 1.8);
-    const grassTop  = new T.MeshLambertMaterial({ color: 0x55aa33 });
-    const dirtSide  = new T.MeshLambertMaterial({ color: 0x8b4513 });
-    const dirtBase  = new T.MeshLambertMaterial({ color: 0x5d3a1a });
+    const geometry = new T.BoxGeometry(2, 2, 2);
+    const grassTop  = new T.MeshStandardMaterial({ color: 0x55aa33, roughness: 0.8 });
+    const dirtSide  = new T.MeshStandardMaterial({ color: 0x8b4513, roughness: 0.9 });
+    const dirtBase  = new T.MeshStandardMaterial({ color: 0x5d3a1a, roughness: 1.0 });
 
     const materials = [dirtSide, dirtSide, grassTop, dirtBase, dirtSide, dirtSide];
     const block = new T.Mesh(geometry, materials);
     scene.add(block);
 
-    const pN = 100;
+    // Block Edges (Black Outline)
+    const edges = new T.EdgesGeometry(geometry);
+    const line  = new T.LineSegments(edges, new T.LineBasicMaterial({ color: 0x000000, linewidth: 2 }));
+    block.add(line);
+
+    const pN = 60;
     const pPos = new Float32Array(pN * 3);
     for (let i = 0; i < pN; i++) {
-      pPos[i*3]   = (Math.random() - 0.5) * 10;
-      pPos[i*3+1] = (Math.random() - 0.5) * 10;
-      pPos[i*3+2] = (Math.random() - 0.5) * 10;
+      pPos[i*3]   = (Math.random() - 0.5) * 8;
+      pPos[i*3+1] = (Math.random() - 0.5) * 8;
+      pPos[i*3+2] = (Math.random() - 0.5) * 8;
     }
     const pGeom = new T.BufferGeometry();
     pGeom.setAttribute('position', new T.BufferAttribute(pPos, 3));
-    const pMat = new T.PointsMaterial({ color: 0xffffff, size: 0.05, transparent: true, opacity: 0.3 });
+    const pMat = new T.PointsMaterial({ color: 0x80ff20, size: 0.08, transparent: true, opacity: 0.5 });
     const pts  = new T.Points(pGeom, pMat);
     scene.add(pts);
 
     let raf, t = 0;
     const tick = () => {
       raf = requestAnimationFrame(tick);
-      t  += 0.01;
+      t  += 0.015;
       block.rotation.y += 0.01;
-      block.rotation.x = Math.sin(t * 0.5) * 0.2;
-      block.position.y = Math.sin(t) * 0.15;
-      pts.rotation.y += 0.002;
+      block.rotation.x = Math.sin(t * 0.3) * 0.1;
+      block.position.y = Math.sin(t * 0.8) * 0.2;
+      pts.rotation.y += 0.003;
       renderer.render(scene, camera);
     };
     tick();
