@@ -1,0 +1,158 @@
+{
+ "source": "built-in palettes",
+ "snapshot": "2026-11-25",
+ "themes": [
+  {
+   "slug": "blackmoney",
+   "name": "Blackmoney",
+   "description": "Warm paper on near-black",
+   "image": "/site/assets/themes/blackmoney.svg",
+   "palette": [
+    "#0b0b0a",
+    "#7fd1a0",
+    "#e6c37a",
+    "#f0885b",
+    "#8fd0ee",
+    "#c9a0e8",
+    "#e7c58a",
+    "#ebe6db"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "paper",
+   "name": "Paper",
+   "description": "Light, ink on cream",
+   "image": "/site/assets/themes/paper.svg",
+   "palette": [
+    "#f6f2e9",
+    "#2f6f4f",
+    "#8a5a1a",
+    "#b4532a",
+    "#2c5d8a",
+    "#5a4a8a",
+    "#b4532a",
+    "#1d1c1a"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "sora",
+   "name": "Sora",
+   "description": "Cool steel and teal",
+   "image": "/site/assets/themes/sora.svg",
+   "palette": [
+    "#0b1015",
+    "#4cc9f0",
+    "#a9d6e5",
+    "#ffa94d",
+    "#9fb4ff",
+    "#6ee7b7",
+    "#4cc9f0",
+    "#d9e4ee"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "circuit",
+   "name": "Circuit",
+   "description": "Board green, phosphor on black",
+   "image": "/site/assets/themes/circuit.svg",
+   "palette": [
+    "#07110c",
+    "#3ddc84",
+    "#ffd166",
+    "#ff8f70",
+    "#59c3f0",
+    "#c792ea",
+    "#3ddc84",
+    "#d3f0dd"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "amber",
+   "name": "Amber",
+   "description": "Warm amber on ink",
+   "image": "/site/assets/themes/amber.svg",
+   "palette": [
+    "#0e0c08",
+    "#f7931a",
+    "#e8d9a0",
+    "#ff7a59",
+    "#ffcf6b",
+    "#9ad1d4",
+    "#f7931a",
+    "#f1e6cc"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "indigo",
+   "name": "Indigo",
+   "description": "Violet on deep indigo",
+   "image": "/site/assets/themes/indigo.svg",
+   "palette": [
+    "#0d0b14",
+    "#a97bff",
+    "#c7b8f0",
+    "#ff9ecb",
+    "#8fb2ff",
+    "#7ad9d0",
+    "#a97bff",
+    "#e2dcf2"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "crimson",
+   "name": "Crimson",
+   "description": "Warm terracotta and charcoal",
+   "image": "/site/assets/themes/crimson.svg",
+   "palette": [
+    "#140a0a",
+    "#ff8f1f",
+    "#e8c39e",
+    "#ffd27a",
+    "#7fd1c8",
+    "#e08a96",
+    "#ff8f1f",
+    "#f4e3d0"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  },
+  {
+   "slug": "slate",
+   "name": "Slate",
+   "description": "Neutral graphite",
+   "image": "/site/assets/themes/slate.svg",
+   "palette": [
+    "#111214",
+    "#9ab0c4",
+    "#b9c4b0",
+    "#d3a37a",
+    "#c4b8d6",
+    "#a3c4c0",
+    "#9aa5b1",
+    "#d6d8dc"
+   ],
+   "repo": "https://github.com/alexrivera",
+   "included": true,
+   "source": "built-in palette"
+  }
+ ]
+}

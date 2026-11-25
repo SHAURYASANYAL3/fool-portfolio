@@ -1,0 +1,324 @@
+body {
+  --bg: #050505;
+  --ink: #ebe6db;
+  --dim: #6d6b66;
+  --chrome: #a9a49a;
+  --cell-w: 7.2px;
+  --cell-h: 13px;
+}
+
+.wall {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  touch-action: pinch-zoom;
+}
+
+.tile {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.machine {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  pointer-events: none;
+}
+
+.status {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  margin: 0;
+  background: var(--line, var(--bg));
+  color: var(--chrome);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.status.is-on {
+  opacity: 1;
+}
+
+.status .mode {
+  padding: 0 var(--cell-w);
+  background: var(--accent, var(--ink));
+  color: var(--bg);
+}
+
+.status .path {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--cell-w);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status .pos {
+  padding: 0 var(--cell-w);
+}
+
+.status.is-insert .mode {
+  background: var(--insert, var(--accent, var(--ink)));
+}
+
+.cmdline {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  height: var(--cell-h);
+  margin: 0;
+  color: var(--ink);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+  white-space: pre;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cmdline.is-on {
+  opacity: 1;
+}
+
+.cmdline .cmd {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.cmdline.is-typing .cmd::after {
+  content: "";
+  display: inline-block;
+  width: var(--cell-w);
+  height: var(--cell-h);
+  vertical-align: top;
+  background: var(--accent, var(--ink));
+}
+
+.cmdline .showcmd {
+  flex: none;
+  width: calc(11 * var(--cell-w));
+  color: var(--chrome);
+}
+
+.glass {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--bg) 35%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.kb-glass {
+  --feather: 14px;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent), linear-gradient(to bottom, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent), linear-gradient(to bottom, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
+  mask-composite: intersect;
+}
+
+.kb-glass.is-on {
+  opacity: 1;
+}
+
+.frame-top {
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.brand {
+  position: absolute;
+  left: calc(5 * var(--cell-w));
+  top: calc(3 * var(--cell-h));
+  gap: var(--cell-w);
+  min-height: 0;
+  color: var(--ink);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+}
+
+.brand svg {
+  width: calc(2 * var(--cell-w));
+  height: 12px;
+}
+
+.brand::after,
+.enter::after {
+  content: "";
+  position: absolute;
+  inset: -16px -8px;
+}
+
+.switch {
+  position: absolute;
+  top: 26px;
+  right: 40px;
+}
+
+.switch.is-solo {
+  top: calc(3 * var(--cell-h));
+}
+
+.switch.is-solo a {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+}
+
+.switch.is-solo a::after {
+  content: "";
+  position: absolute;
+  inset: -16px -8px;
+}
+
+.enter {
+  position: absolute;
+  right: auto;
+  bottom: auto;
+  z-index: 6;
+  display: block;
+  min-height: 0;
+  padding: 0 var(--cell-w);
+  background: var(--ink);
+  color: var(--bg);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.enter:hover {
+  filter: brightness(1.18);
+}
+
+.theme-key {
+  position: absolute;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cell-w);
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--chrome);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.theme-key:hover {
+  color: var(--ink);
+}
+
+.command-glyph {
+  position: relative;
+  display: inline-block;
+  width: 14px;
+  height: 10px;
+  flex: none;
+  color: var(--accent, var(--ink));
+}
+
+.command-glyph::before {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 5px;
+  height: 5px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  content: "";
+  transform: rotate(-45deg);
+}
+
+.command-glyph::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  height: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.theme-key .command-glyph {
+  margin-top: -1px;
+}
+
+.theme-key:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.enter:focus-visible {
+  outline-offset: 4px;
+}
+
+.note {
+  position: absolute;
+  left: calc(5 * var(--cell-w));
+  bottom: calc(2 * var(--cell-h));
+  z-index: 6;
+  margin: 0;
+  color: var(--ink);
+  font: 400 12px/13px "Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0;
+  padding-right: var(--cell-w);
+  background: var(--bg);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.brand,
+.switch,
+.note,
+.enter,
+.theme-key {
+  transition: opacity 320ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.is-leaving .brand,
+.is-leaving .switch,
+.is-leaving .note,
+.is-leaving .enter,
+.is-leaving .theme-key,
+.is-leaving .glass,
+.is-leaving .status,
+.is-leaving .cmdline {
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .brand span {
+    display: inline;
+  }
+
+  .switch {
+    top: calc(5 * var(--cell-h));
+    right: 8px;
+  }
+}

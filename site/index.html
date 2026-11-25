@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>alexrivera.dev</title>
+<meta name="description" content="alexrivera.dev — work, projects, talks and themes, opened in an editor.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/intros/shared/frame.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<main class="stage">
+  <header class="frame-top">
+    <a class="brand" href="/" data-tip="back to the intro"><svg viewBox="0 0 88 80" aria-hidden="true"><path d="M8 16L36 40L8 64L18 74L54 40L18 6Z"/><path d="M52 62H84V74H52Z"/></svg><span>alexrivera.dev</span></a>
+    <nav class="switch is-solo" aria-label="Elsewhere"><a href="https://github.com/alexrivera" rel="me">github</a></nav>
+  </header>
+
+  <h1 class="sr-only">alexrivera.dev — work, projects, talks and themes.</h1>
+
+  <section class="editor" aria-label="Editor">
+    <button class="tabline" type="button" aria-expanded="false" aria-controls="tree"><span class="tab-dir">~/Projects</span><span class="tab-file"></span><span class="tab-toggle" aria-hidden="true">↓</span></button>
+    <nav class="wheel" id="tree" aria-label="Projects, themes and the log"></nav>
+    <div class="pane">
+      <p class="winbar"></p>
+      <div class="buffer" tabindex="0" aria-live="polite"></div>
+      <div class="eye-host" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="bar">
+    <p class="bar-id" aria-hidden="true"><span class="bar-title">ALEX RIVERA</span><span class="bar-sub"><span class="cmd"></span><span class="hunt"></span><span class="keys"></span></span></p>
+    <div class="bar-cols" aria-hidden="true"></div>
+    <div class="bar-state" aria-hidden="true">
+      <p class="col"><span class="label">WORM</span><span class="value" data-k="worm">lurking</span></p>
+      <p class="col"><span class="label">EYE</span><span class="value" data-k="eye">closed</span></p>
+      <p class="col"><span class="label">GHOST</span><span class="value" data-k="ghost">idle</span></p>
+    </div>
+    <button class="den" type="button" aria-label="worm" aria-pressed="false" data-tip="wake the worm"></button>
+    <p class="bar-graph" aria-hidden="true"><span class="label span">VISITORS</span><span class="value end"></span><canvas></canvas></p>
+  </div>
+  <div class="desk" aria-hidden="true"></div>
+</main>
+<canvas class="overlay" aria-hidden="true"></canvas>
+<script type="module" src="editor.js"></script>
+</body>
+</html>

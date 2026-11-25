@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" width="800" height="460">
+  <rect width="800" height="460" rx="10" fill="#0b1015"/>
+  <rect x="1" y="1" width="798" height="458" rx="9" fill="none" stroke="#1e2a36" stroke-width="2"/>
+  <rect width="800" height="38" rx="10" fill="#111820"/>
+  <circle cx="24" cy="19" r="5" fill="#ff5f56"/>
+  <circle cx="42" cy="19" r="5" fill="#ffbd2e"/>
+  <circle cx="60" cy="19" r="5" fill="#27c93f"/>
+  <text x="400" y="23" text-anchor="middle" fill="#6f8296" font-family="monospace" font-size="12">termflow — dev workspace (4 services)</text>
+  <rect x="28" y="60" width="220" height="370" rx="6" fill="#0f151c" stroke="#1e2a36"/>
+  <text x="44" y="88" fill="#4cc9f0" font-family="monospace" font-size="13">SERVICES</text>
+  <text x="44" y="118" fill="#6ee7b7" font-family="monospace" font-size="13">● api-gateway  :8080</text>
+  <text x="44" y="144" fill="#6ee7b7" font-family="monospace" font-size="13">● worker-pool  :8081</text>
+  <text x="44" y="170" fill="#6ee7b7" font-family="monospace" font-size="13">● postgres     :5432</text>
+  <text x="44" y="196" fill="#ffa94d" font-family="monospace" font-size="13">◐ web-client   :3000</text>
+  <rect x="266" y="60" width="506" height="370" rx="6" fill="#0f151c" stroke="#1e2a36"/>
+  <text x="284" y="90" fill="#9fb4ff" font-family="monospace" font-size="12">[api-gateway] listening on 127.0.0.1:8080 (ready in 18ms)</text>
+  <text x="284" y="116" fill="#a9d6e5" font-family="monospace" font-size="12">[worker-pool] connected to queue (4 workers active)</text>
+  <text x="284" y="142" fill="#d9e4ee" font-family="monospace" font-size="12">[postgres]    database system is ready to accept connections</text>
+  <text x="284" y="168" fill="#ffa94d" font-family="monospace" font-size="12">[web-client]  bundling modules... done in 240ms</text>
+  <text x="284" y="210" fill="#6ee7b7" font-family="monospace" font-size="12">✓ All 4 services healthy. Press ? for keybindings.</text>
+</svg>

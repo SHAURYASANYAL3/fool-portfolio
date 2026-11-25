@@ -1,0 +1,173 @@
+{
+ "from": "2026-01-01",
+ "to": "2026-11-24",
+ "fetchedAt": "2026-11-25T09:11:39.159Z",
+ "scope": "Sample monthly commits",
+ "months": [
+  {
+   "month": "2026-01",
+   "top": [
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 12
+    },
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 4
+    }
+   ]
+  },
+  {
+   "month": "2026-02",
+   "top": [
+    {
+     "repo": "termflow",
+     "owner": "alexrivera",
+     "commits": 19
+    },
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 9
+    }
+   ]
+  },
+  {
+   "month": "2026-03",
+   "top": [
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 26
+    },
+    {
+     "repo": "minikv",
+     "owner": "alexrivera",
+     "commits": 14
+    }
+   ]
+  },
+  {
+   "month": "2026-04",
+   "top": [
+    {
+     "repo": "schemasync",
+     "owner": "alexrivera",
+     "commits": 33
+    },
+    {
+     "repo": "termflow",
+     "owner": "alexrivera",
+     "commits": 5
+    }
+   ]
+  },
+  {
+   "month": "2026-05",
+   "top": [
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 17
+    },
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 10
+    }
+   ]
+  },
+  {
+   "month": "2026-06",
+   "top": [
+    {
+     "repo": "termflow",
+     "owner": "alexrivera",
+     "commits": 24
+    },
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 15
+    }
+   ]
+  },
+  {
+   "month": "2026-07",
+   "top": [
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 31
+    },
+    {
+     "repo": "minikv",
+     "owner": "alexrivera",
+     "commits": 6
+    }
+   ]
+  },
+  {
+   "month": "2026-08",
+   "top": [
+    {
+     "repo": "schemasync",
+     "owner": "alexrivera",
+     "commits": 15
+    },
+    {
+     "repo": "termflow",
+     "owner": "alexrivera",
+     "commits": 11
+    }
+   ]
+  },
+  {
+   "month": "2026-09",
+   "top": [
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 22
+    },
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 16
+    }
+   ]
+  },
+  {
+   "month": "2026-10",
+   "top": [
+    {
+     "repo": "termflow",
+     "owner": "alexrivera",
+     "commits": 29
+    },
+    {
+     "repo": "pulsedb",
+     "owner": "alexrivera",
+     "commits": 7
+    }
+   ]
+  },
+  {
+   "month": "2026-11",
+   "top": [
+    {
+     "repo": "tracekit",
+     "owner": "alexrivera",
+     "commits": 13
+    },
+    {
+     "repo": "minikv",
+     "owner": "alexrivera",
+     "commits": 12
+    }
+   ]
+  }
+ ]
+}

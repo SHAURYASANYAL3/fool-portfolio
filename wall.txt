@@ -1,0 +1,58 @@
+pub struct Segment {
+    start_ts: u64,
+    end_ts: u64,
+    points: Vec<Sample>,
+}
+impl Segment {
+    pub fn query_range(&self, from: u64, to: u64) -> &[Sample] {
+        let lo = self.points.partition_point(|s| s.ts < from);
+        let hi = self.points.partition_point(|s| s.ts <= to);
+        &self.points[lo..hi]
+    }
+}
+package runner
+func TopoSort(tasks map[string][]string) ([]string, error) {
+    visited := make(map[string]int)
+    var order []string
+    var visit func(string) error
+    visit = func(id string) error {
+        if visited[id] == 1 { return ErrCycle }
+        if visited[id] == 2 { return nil }
+        visited[id] = 1
+        for _, dep := range tasks[id] {
+            if err := visit(dep); err != nil { return err }
+        }
+        visited[id] = 2
+        order = append(order, id)
+        return nil
+    }
+    for id := range tasks { if err := visit(id); err != nil { return nil, err } }
+    return order, nil
+}
+export interface SpanNode {
+  id: string;
+  name: string;
+  startUs: number;
+  durationUs: number;
+  children: SpanNode[];
+}
+export function buildFlameLayout(spans: SpanNode[], width: number) {
+  const rootStart = Math.min(...spans.map((s) => s.startUs));
+  const total = Math.max(...spans.map((s) => s.startUs + s.durationUs)) - rootStart;
+  return spans.map((span) => ({
+    x: ((span.startUs - rootStart) / total) * width,
+    w: Math.max(1, (span.durationUs / total) * width),
+    span,
+  }));
+}
+from dataclasses import dataclass
+@dataclass
+class MigrationRisk:
+    table: str
+    severity: str
+    message: str
+def check_add_column(stmt: dict) -> list[MigrationRisk]:
+    risks = []
+    if not stmt.get("nullable", True) and "default" not in stmt:
+        risks.append(MigrationRisk(stmt["table"], "HIGH", "NOT NULL without default locks table"))
+    return risks

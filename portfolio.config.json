@@ -1,0 +1,198 @@
+{
+  "identity": {
+    "name": "Alex Rivera",
+    "barTitle": "ALEX RIVERA",
+    "terminalUser": "alex",
+    "domain": "alexrivera.dev",
+    "tagline": "systems, developer tools, open source.",
+    "github": "alexrivera",
+    "storagePrefix": "portfolio"
+  },
+  "about": {
+    "bio": "Systems and full-stack engineer building developer tools, distributed storage engines, and open-source software.",
+    "extra": "San Francisco · Open Source"
+  },
+  "links": [
+    {
+      "label": "Email",
+      "url": "mailto:hello@alexrivera.dev"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/alexrivera"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/alexrivera"
+    },
+    {
+      "label": "X / Twitter",
+      "url": "https://x.com/alexrivera"
+    },
+    {
+      "label": "Blog",
+      "url": "https://alexrivera.dev/blog"
+    }
+  ],
+  "work": [
+    {
+      "when": "06/2024 – present",
+      "title": "Senior Systems Engineer",
+      "org": "CloudScale",
+      "where": "San Francisco · Hybrid",
+      "desc": "Leading the distributed query execution engine and low-latency telemetry pipeline in Rust and Go.",
+      "url": "https://example.com/cloudscale"
+    },
+    {
+      "when": "03/2022 – 05/2024",
+      "title": "Software Engineer",
+      "org": "DevFlow",
+      "where": "Remote",
+      "desc": "Built CLI developer tooling, local sandbox runtimes, and real-time build log streaming for 50k+ engineers.",
+      "url": "https://example.com/devflow"
+    },
+    {
+      "when": "01/2021 – present",
+      "title": "Core Maintainer",
+      "org": "OpenTrace",
+      "where": "Open source",
+      "desc": "Maintaining open-source distributed tracing SDKs and terminal visualization tools.",
+      "url": "https://github.com/alexrivera"
+    },
+    {
+      "when": "05/2020 – 08/2020",
+      "title": "Open Source Fellow",
+      "org": "SystemsLab",
+      "where": "Remote",
+      "desc": "Implemented zero-copy serialization primitives and benchmarked memory-mapped storage formats."
+    }
+  ],
+  "projects": [
+    {
+      "name": "PulseDB",
+      "tag": "Database · Rust",
+      "desc": "An embedded time-series storage engine written in Rust with sub-millisecond range queries and vectorized compression.",
+      "long": "PulseDB is a lightweight embedded time-series database designed for edge telemetry and local developer metrics. It features gorilla-style delta encoding, memory-mapped segment files, and a zero-allocation query iterator.",
+      "githubRepo": "",
+      "shots": [
+        "shots/project-1.svg"
+      ],
+      "stack": [
+        "Rust",
+        "SQLite",
+        "WebAssembly",
+        "TypeScript"
+      ],
+      "url": "https://github.com/alexrivera/pulsedb"
+    },
+    {
+      "name": "TermFlow",
+      "tag": "CLI · Go",
+      "desc": "A fast terminal multiplexer and task runner with live dependency graphs and structured log filtering.",
+      "long": "TermFlow orchestrates local microservices and build pipelines from a single declarative manifest. It streams colorized output, detects port conflicts automatically, and exports execution timelines.",
+      "githubRepo": "",
+      "shots": [
+        "shots/project-2.svg"
+      ],
+      "stack": [
+        "Go",
+        "Terminal",
+        "Docker",
+        "Linux"
+      ],
+      "url": "https://github.com/alexrivera/termflow"
+    },
+    {
+      "name": "TraceKit",
+      "tag": "Observability · TypeScript",
+      "desc": "Zero-overhead OpenTelemetry trace viewer that runs entirely in the browser from JSONL trace dumps.",
+      "long": "TraceKit lets engineers inspect distributed traces locally without spinning up heavy observability backends. Drop a trace file into the browser and inspect flamegraphs, critical paths, and span attributes.",
+      "githubRepo": "",
+      "shots": [],
+      "stack": [
+        "TypeScript",
+        "React",
+        "Canvas",
+        "OpenTelemetry"
+      ],
+      "url": "https://github.com/alexrivera/tracekit"
+    },
+    {
+      "name": "SchemaSync",
+      "tag": "Tooling · Python",
+      "desc": "Automated database migration validator that catches breaking schema changes and missing indexes in CI.",
+      "long": "SchemaSync parses SQL and ORM migrations in pull requests, simulates lock contention against production table statistics, and posts actionable safety reports.",
+      "githubRepo": "",
+      "shots": [],
+      "stack": [
+        "Python",
+        "PostgreSQL",
+        "GitHub Actions"
+      ],
+      "url": "https://github.com/alexrivera/schemasync"
+    },
+    {
+      "name": "MiniKV",
+      "tag": "Storage · C",
+      "desc": "A minimal Raft-backed key-value store built to explore consensus algorithms and deterministic simulation testing.",
+      "long": "MiniKV implements leader election, log replication, and snapshot compaction in under 2,000 lines of C with a deterministic network simulator.",
+      "githubRepo": "",
+      "more": true,
+      "shots": [],
+      "stack": [
+        "C",
+        "Networking",
+        "Raft"
+      ],
+      "url": "https://github.com/alexrivera/minikv"
+    },
+    {
+      "name": "Dotfiles",
+      "tag": "Config · Neovim",
+      "desc": "Modular Neovim, Fish shell, and tmux configuration tuned for fast keyboard-driven development.",
+      "long": "Cross-platform terminal environment with custom Lua plugins, minimal LSP setup, and synchronized color palettes.",
+      "githubRepo": "",
+      "more": true,
+      "shots": [],
+      "stack": [
+        "Lua",
+        "Neovim",
+        "Shell"
+      ],
+      "url": "https://github.com/alexrivera/dotfiles"
+    }
+  ],
+  "talks": [
+    {
+      "name": "Systems Conf",
+      "place": "San Francisco, USA",
+      "when": "Oct 2025",
+      "lat": 37.77,
+      "lon": -122.41,
+      "desc": "Building deterministic simulation harnesses for storage engines — catching race conditions before production.",
+      "url": "https://example.com/talk-1",
+      "photos": []
+    },
+    {
+      "name": "Open Source Summit",
+      "place": "London, UK",
+      "when": "May 2024",
+      "lat": 51.51,
+      "lon": -0.13,
+      "desc": "Designing zero-dependency developer tools that run fast on every platform.",
+      "url": "https://example.com/talk-2",
+      "photos": []
+    }
+  ],
+  "wallRepos": [],
+  "siteStack": [
+    {
+      "name": "Vanilla JS",
+      "via": "zero-build frontend"
+    },
+    {
+      "name": "Canvas 2D",
+      "via": "intro + contribution ink"
+    }
+  ]
+}

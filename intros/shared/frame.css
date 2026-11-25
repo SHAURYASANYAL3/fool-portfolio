@@ -1,0 +1,217 @@
+@font-face {
+  font-family: "Archivo";
+  src: url("/assets/fonts/archivo.ttf") format("truetype");
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/assets/fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/intros/shared/InstrumentSerif-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plex Mono";
+  src: url("/assets/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Archivo", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.stage {
+  position: relative;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+}
+
+.frame-top {
+  position: absolute;
+  top: 26px;
+  left: 40px;
+  right: 40px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+.frame-top > * {
+  pointer-events: auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--chrome);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-decoration: none;
+}
+
+.brand svg {
+  width: 18px;
+  height: auto;
+  fill: currentColor;
+}
+
+.switch {
+  display: flex;
+  gap: 2px;
+}
+
+.switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: var(--dim);
+  font: 400 11px/1 "Plex Mono", monospace;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  color: var(--ink);
+}
+
+.switch a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 7px;
+}
+
+.enter {
+  position: absolute;
+  right: 40px;
+  bottom: 26px;
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  text-transform: uppercase;
+  color: var(--chrome);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-decoration: none;
+}
+
+.serif {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+}
+
+.serif i {
+  font-style: italic;
+}
+
+.mono {
+  font-family: "Plex Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.quiet-button {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+.quiet-button:hover {
+  color: var(--ink);
+}
+
+.is-hidden {
+  visibility: hidden;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .frame-top {
+    top: 12px;
+    left: 16px;
+    right: 12px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .enter {
+    right: 16px;
+    bottom: 12px;
+  }
+}
