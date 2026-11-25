@@ -4,6 +4,10 @@ A Neovim-inspired developer portfolio template with an animated code-wall intro,
 
 Zero build step required — pure HTML, CSS, and ES modules.
 
+<video src="https://github.com/pavanjoshi914/dev-portfolio-template/raw/main/assets/demo.mp4" controls width="100%"></video>
+
+> [Watch Demo Video (`assets/demo.mp4`)](./assets/demo.mp4)
+
 ---
 
 ## Quick Start (With One AI Prompt)
