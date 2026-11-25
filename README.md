@@ -12,9 +12,11 @@ Zero build step required — pure HTML, CSS, and ES modules.
   <a href="./assets/demo.mp4">Watch full HD video (<code>assets/demo.mp4</code>)</a>
 </p>
 
-| Intro & Code Wall | Interactive Editor | Projects & Stack | Themes & Terminal |
-| :---: | :---: | :---: | :---: |
-| <img src="./assets/preview-1.png" alt="Preview 1" width="200" /> | <img src="./assets/preview-2.png" alt="Preview 2" width="200" /> | <img src="./assets/preview-3.png" alt="Preview 3" width="200" /> | <img src="./assets/preview-4.png" alt="Preview 4" width="200" /> |
+| Intro & Code Wall | Interactive Editor |
+| :---: | :---: |
+| <img src="./assets/preview-1.png" alt="Intro & Code Wall" width="420" /> | <img src="./assets/preview-2.png" alt="Interactive Editor" width="420" /> |
+| **Projects & Stack** | **Themes & Terminal** |
+| <img src="./assets/preview-3.png" alt="Projects & Stack" width="420" /> | <img src="./assets/preview-4.png" alt="Themes & Terminal" width="420" /> |
 
 ---
 
