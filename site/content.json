@@ -1,271 +1,296 @@
 {
- "owner": "alexrivera",
- "fetchedAt": "2026-11-25T09:11:39.315Z",
+ "owner": "SHAURYASANYAL3",
+ "fetchedAt": "2026-11-25T18:44:02.753Z",
  "about": {
-  "repo": "alexrivera",
+  "repo": "SHAURYASANYAL3",
   "lines": [
-   "# Alex Rivera",
+   "# Shaurya Sanyal",
    "",
-   "Systems and full-stack engineer building developer tools, distributed storage engines, and open-source software.",
+   "CS Undergrad & Systems Researcher architecting autonomous AI agent infrastructure, distributed systems telemetry, and custom low-level C & Rust runtimes.",
    "",
-   "San Francisco · Open Source",
+   "Visakhapatnam, India · Shinraya Tech Labs",
    "",
-   "[GitHub](https://github.com/alexrivera)",
-   "[LinkedIn](https://www.linkedin.com/in/alexrivera)",
-   "[X / Twitter](https://x.com/alexrivera)",
-   "[Blog](https://alexrivera.dev/blog)"
+   "[GitHub](https://github.com/SHAURYASANYAL3/)",
+   "[LinkedIn](https://www.linkedin.com/in/shaurya-sanyal)",
+   "[Portfolio](https://fool-portfolio.vercel.app/)"
   ]
  },
  "projects": [
   {
-   "repo": "pulsedb",
-   "url": "https://github.com/alexrivera/pulsedb",
-   "description": "An embedded time-series storage engine written in Rust with sub-millisecond range queries and vectorized compression.",
-   "tag": "Database · Rust",
-   "stars": null,
-   "language": "Rust",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
-   "branch": "main",
-   "commits": null,
-   "files": null,
-   "counts": {},
-   "github": "https://github.com/alexrivera/pulsedb",
-   "stack": [
-    "Rust",
-    "SQLite",
-    "WebAssembly",
-    "TypeScript"
-   ],
-   "images": [
-    {
-     "file": "shots/project-1.svg",
-     "source": "shots/project-1.svg",
-     "alt": "PulseDB screenshot 1",
-     "xray": false
-    }
-   ],
-   "lines": [
-    "# PulseDB",
-    "",
-    "\u0001IMG0\u0001",
-    "",
-    "### An embedded time-series storage engine written in Rust with sub-millisecond range queries and vectorized compression.",
-    "",
-    "PulseDB is a lightweight embedded time-series database designed for edge",
-    "telemetry and local developer metrics. It features gorilla-style delta",
-    "encoding, memory-mapped segment files, and a zero-allocation query iterator.",
-    "",
-    "Built with Rust · SQLite · WebAssembly · TypeScript",
-    "",
-    "[Visit](https://github.com/alexrivera/pulsedb)"
-   ]
-  },
-  {
-   "repo": "termflow",
-   "url": "https://github.com/alexrivera/termflow",
-   "description": "A fast terminal multiplexer and task runner with live dependency graphs and structured log filtering.",
-   "tag": "CLI · Go",
-   "stars": null,
-   "language": "Go",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
-   "branch": "main",
-   "commits": null,
-   "files": null,
-   "counts": {},
-   "github": "https://github.com/alexrivera/termflow",
-   "stack": [
-    "Go",
-    "Terminal",
-    "Docker",
-    "Linux"
-   ],
-   "images": [
-    {
-     "file": "shots/project-2.svg",
-     "source": "shots/project-2.svg",
-     "alt": "TermFlow screenshot 1",
-     "xray": false
-    }
-   ],
-   "lines": [
-    "# TermFlow",
-    "",
-    "\u0001IMG0\u0001",
-    "",
-    "### A fast terminal multiplexer and task runner with live dependency graphs and structured log filtering.",
-    "",
-    "TermFlow orchestrates local microservices and build pipelines from a single",
-    "declarative manifest. It streams colorized output, detects port conflicts",
-    "automatically, and exports execution timelines.",
-    "",
-    "Built with Go · Terminal · Docker · Linux",
-    "",
-    "[Visit](https://github.com/alexrivera/termflow)"
-   ]
-  },
-  {
-   "repo": "tracekit",
-   "url": "https://github.com/alexrivera/tracekit",
-   "description": "Zero-overhead OpenTelemetry trace viewer that runs entirely in the browser from JSONL trace dumps.",
-   "tag": "Observability · TypeScript",
-   "stars": null,
+   "repo": "e-vara",
+   "url": "https://github.com/SHAURYASANYAL3/E-vara",
+   "description": "AI-driven digital reputation defense MVP protecting identities from automated impersonation and synthetic threats.",
+   "tag": "Security · AI",
+   "stars": 5,
    "language": "TypeScript",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
+   "pushed": "2026-11-12",
+   "forks": 14,
+   "watchers": 0,
+   "issues": 15,
+   "license": "MIT",
+   "created": "2026-03-07",
    "branch": "main",
-   "commits": null,
-   "files": null,
+   "commits": 2409,
+   "files": 297,
    "counts": {},
-   "github": "https://github.com/alexrivera/tracekit",
+   "github": "https://github.com/SHAURYASANYAL3/E-vara",
    "stack": [
     "TypeScript",
-    "React",
-    "Canvas",
-    "OpenTelemetry"
-   ],
-   "images": [],
-   "lines": [
-    "# TraceKit",
-    "",
-    "",
-    "### Zero-overhead OpenTelemetry trace viewer that runs entirely in the browser from JSONL trace dumps.",
-    "",
-    "TraceKit lets engineers inspect distributed traces locally without spinning",
-    "up heavy observability backends. Drop a trace file into the browser and",
-    "inspect flamegraphs, critical paths, and span attributes.",
-    "",
-    "Built with TypeScript · React · Canvas · OpenTelemetry",
-    "",
-    "[Visit](https://github.com/alexrivera/tracekit)"
-   ]
-  },
-  {
-   "repo": "schemasync",
-   "url": "https://github.com/alexrivera/schemasync",
-   "description": "Automated database migration validator that catches breaking schema changes and missing indexes in CI.",
-   "tag": "Tooling · Python",
-   "stars": null,
-   "language": "Python",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
-   "branch": "main",
-   "commits": null,
-   "files": null,
-   "counts": {},
-   "github": "https://github.com/alexrivera/schemasync",
-   "stack": [
     "Python",
     "PostgreSQL",
-    "GitHub Actions"
+    "PLpgSQL"
    ],
    "images": [],
    "lines": [
-    "# SchemaSync",
+    "# E-vara",
     "",
     "",
-    "### Automated database migration validator that catches breaking schema changes and missing indexes in CI.",
+    "### AI-driven digital reputation defense MVP protecting identities from automated impersonation and synthetic threats.",
     "",
-    "SchemaSync parses SQL and ORM migrations in pull requests, simulates lock",
-    "contention against production table statistics, and posts actionable safety",
-    "reports.",
+    "E-vara is an AI-driven digital reputation defense platform engineered to",
+    "protect individual and enterprise identities against automated",
+    "impersonation, deepfake exposure, and synthetic threat vectors using",
+    "real-time analysis.",
     "",
-    "Built with Python · PostgreSQL · GitHub Actions",
+    "Built with TypeScript · Python · PostgreSQL · PLpgSQL",
     "",
-    "[Visit](https://github.com/alexrivera/schemasync)"
+    "[Visit](https://github.com/SHAURYASANYAL3/E-vara)"
    ]
   },
   {
-   "repo": "minikv",
-   "url": "https://github.com/alexrivera/minikv",
-   "description": "A minimal Raft-backed key-value store built to explore consensus algorithms and deterministic simulation testing.",
-   "tag": "Storage · C",
-   "stars": null,
-   "language": "C",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
+   "repo": "agentwatch",
+   "url": "https://github.com/SHAURYASANYAL3/AgentWatch-landing",
+   "description": "Real-time reasoning auditor and observability platform for AI agents.",
+   "tag": "AI Infrastructure · Observability",
+   "stars": 0,
+   "language": "TypeScript",
+   "pushed": "2026-11-03",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 0,
+   "license": "MIT",
+   "created": "2026-07-08",
    "branch": "main",
-   "commits": null,
-   "files": null,
+   "commits": 2,
+   "files": 51,
    "counts": {},
-   "github": "https://github.com/alexrivera/minikv",
+   "github": "https://github.com/SHAURYASANYAL3/AgentWatch-landing",
    "stack": [
+    "TypeScript",
+    "Python",
+    "TailwindCSS"
+   ],
+   "images": [],
+   "lines": [
+    "# AgentWatch",
+    "",
+    "",
+    "### Real-time reasoning auditor and observability platform for AI agents.",
+    "",
+    "Panoptis / AgentWatch is an autonomous AI agent reasoning auditor and",
+    "telemetry platform. It catches silent logical failures, invariant",
+    "violations, and reasoning drifts in multi-step agent execution before",
+    "actions reach production systems.",
+    "",
+    "Built with TypeScript · Python · TailwindCSS",
+    "",
+    "[Visit](https://github.com/SHAURYASANYAL3/AgentWatch-landing)"
+   ]
+  },
+  {
+   "repo": "aetherbond",
+   "url": "https://github.com/SHAURYASANYAL3/AetherBond",
+   "description": "High-speed Multi-WAN link aggregation & dual-NIC bonding engine with hardware-level socket steering.",
+   "tag": "Networking · Systems",
+   "stars": 0,
+   "language": "Python",
+   "pushed": "2026-11-12",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 0,
+   "license": "MIT",
+   "created": "2026-11-12",
+   "branch": "main",
+   "commits": 5,
+   "files": 33,
+   "counts": {},
+   "github": "https://github.com/SHAURYASANYAL3/AetherBond",
+   "stack": [
+    "Python",
     "C",
     "Networking",
-    "Raft"
+    "JavaScript"
    ],
    "images": [],
    "lines": [
-    "# MiniKV",
+    "# AetherBond",
     "",
     "",
-    "### A minimal Raft-backed key-value store built to explore consensus algorithms and deterministic simulation testing.",
+    "### High-speed Multi-WAN link aggregation & dual-NIC bonding engine with hardware-level socket steering.",
     "",
-    "MiniKV implements leader election, log replication, and snapshot compaction",
-    "in under 2,000 lines of C with a deterministic network simulator.",
+    "AetherBond bonds multiple network interfaces (Wi-Fi + Ethernet) to deliver",
+    "aggregated throughput and instant failover resilience with low-latency",
+    "socket distribution.",
     "",
-    "Built with C · Networking · Raft",
+    "Built with Python · C · Networking · JavaScript",
     "",
-    "[Visit](https://github.com/alexrivera/minikv)"
+    "[Visit](https://github.com/SHAURYASANYAL3/AetherBond)"
    ]
   },
   {
-   "repo": "dotfiles",
-   "url": "https://github.com/alexrivera/dotfiles",
-   "description": "Modular Neovim, Fish shell, and tmux configuration tuned for fast keyboard-driven development.",
-   "tag": "Config · Neovim",
-   "stars": null,
-   "language": "Lua",
-   "pushed": null,
-   "forks": null,
-   "watchers": null,
-   "issues": null,
-   "license": null,
-   "created": null,
+   "repo": "nsoc",
+   "url": "https://github.com/SHAURYASANYAL3/nsoc",
+   "description": "Autonomous Security Operations Center telemetry correlation, sliding-window threat detection, and triage.",
+   "tag": "Cybersecurity · Telemetry",
+   "stars": 0,
+   "language": "JavaScript",
+   "pushed": "2026-11-25",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 6,
+   "license": "MIT",
+   "created": "2026-11-02",
    "branch": "main",
-   "commits": null,
-   "files": null,
+   "commits": 2089,
+   "files": 19,
    "counts": {},
-   "github": "https://github.com/alexrivera/dotfiles",
+   "github": "https://github.com/SHAURYASANYAL3/nsoc",
    "stack": [
-    "Lua",
-    "Neovim",
-    "Shell"
+    "Python",
+    "JavaScript",
+    "HTML",
+    "CSS"
    ],
    "images": [],
    "lines": [
-    "# Dotfiles",
+    "# nsoc",
     "",
     "",
-    "### Modular Neovim, Fish shell, and tmux configuration tuned for fast keyboard-driven development.",
+    "### Autonomous Security Operations Center telemetry correlation, sliding-window threat detection, and triage.",
     "",
-    "Cross-platform terminal environment with custom Lua plugins, minimal LSP",
-    "setup, and synchronized color palettes.",
+    "Autonomous SOC telemetry correlation, sliding-window threat detection, and",
+    "triage platform aggregating security telemetry across infrastructure.",
     "",
-    "Built with Lua · Neovim · Shell",
+    "Built with Python · JavaScript · HTML · CSS",
     "",
-    "[Visit](https://github.com/alexrivera/dotfiles)"
+    "[Visit](https://github.com/SHAURYASANYAL3/nsoc)"
+   ]
+  },
+  {
+   "repo": "knockmail",
+   "url": "https://github.com/SHAURYASANYAL3/KnockMail",
+   "description": "Next-Gen Email OSINT and Threat Reconnaissance Framework.",
+   "tag": "OSINT · Python",
+   "stars": 0,
+   "language": "Python",
+   "pushed": "2026-11-13",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 0,
+   "license": "BSD-3-Clause",
+   "created": "2026-11-13",
+   "branch": "master",
+   "commits": 4,
+   "files": 20,
+   "counts": {},
+   "github": "https://github.com/SHAURYASANYAL3/KnockMail",
+   "stack": [
+    "Python",
+    "OSINT",
+    "Networking"
+   ],
+   "images": [],
+   "lines": [
+    "# KnockMail",
+    "",
+    "",
+    "### Next-Gen Email OSINT and Threat Reconnaissance Framework.",
+    "",
+    "KnockMail v2.0 is a threat reconnaissance framework that verifies",
+    "deliverability, queries mail server configs, detects spoofing",
+    "configurations, and enumerates linked infrastructure.",
+    "",
+    "Built with Python · OSINT · Networking",
+    "",
+    "[Visit](https://github.com/SHAURYASANYAL3/KnockMail)"
+   ]
+  },
+  {
+   "repo": "saferoute",
+   "url": "https://github.com/SHAURYASANYAL3/SafeRoute",
+   "description": "Adaptive municipal student safety and dynamic routing coordination system.",
+   "tag": "Safety · Routing",
+   "stars": 3,
+   "language": "TypeScript",
+   "pushed": "2026-11-03",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 0,
+   "license": "MIT",
+   "created": "2026-05-14",
+   "branch": "main",
+   "commits": 3,
+   "files": 49,
+   "counts": {},
+   "github": "https://github.com/SHAURYASANYAL3/SafeRoute",
+   "stack": [
+    "TypeScript",
+    "JavaScript",
+    "CSS"
+   ],
+   "images": [],
+   "lines": [
+    "# SafeRoute",
+    "",
+    "",
+    "### Adaptive municipal student safety and dynamic routing coordination system.",
+    "",
+    "Adaptive municipal student safety and dynamic routing coordination system",
+    "built for real-world environments with geofence monitoring and incident",
+    "alerting.",
+    "",
+    "Built with TypeScript · JavaScript · CSS",
+    "",
+    "[Visit](https://github.com/SHAURYASANYAL3/SafeRoute)"
+   ]
+  },
+  {
+   "repo": "fool-portfolio",
+   "url": "https://github.com/SHAURYASANYAL3/fool-portfolio",
+   "description": "3D Cyber-Neural systems architecture portfolio and interactive graphics experience built with Three.js.",
+   "tag": "3D Graphics · Web",
+   "stars": 3,
+   "language": "TypeScript",
+   "pushed": "2026-11-03",
+   "forks": 0,
+   "watchers": 0,
+   "issues": 0,
+   "license": "MIT",
+   "created": "2026-04-03",
+   "branch": "main",
+   "commits": 21,
+   "files": 52,
+   "counts": {},
+   "github": "https://github.com/SHAURYASANYAL3/fool-portfolio",
+   "stack": [
+    "TypeScript",
+    "Three.js",
+    "GLSL",
+    "HTML"
+   ],
+   "images": [],
+   "lines": [
+    "# fool-portfolio",
+    "",
+    "",
+    "### 3D Cyber-Neural systems architecture portfolio and interactive graphics experience built with Three.js.",
+    "",
+    "Cyber-neural interactive 3D web experience showcasing full-stack",
+    "capabilities, graphics shaders, and system design.",
+    "",
+    "Built with TypeScript · Three.js · GLSL · HTML",
+    "",
+    "[Visit](https://github.com/SHAURYASANYAL3/fool-portfolio)"
    ]
   }
  ],
@@ -604,83 +629,43 @@
  },
  "work": [
   {
-   "when": "06/2024 – present",
-   "title": "Senior Systems Engineer",
-   "org": "CloudScale",
-   "where": "San Francisco · Hybrid",
-   "desc": "Leading the distributed query execution engine and low-latency telemetry pipeline in Rust and Go.",
-   "url": "https://example.com/cloudscale"
+   "when": "2024 – present",
+   "title": "Systems Researcher & Core Architect",
+   "org": "Shinraya Tech Labs",
+   "where": "Open Source",
+   "desc": "Leading research on autonomous AI agent security invariants, forensic telemetry pipelines, and agent observability platforms.",
+   "url": "https://github.com/Shinraya-Tech-Labs"
   },
   {
-   "when": "03/2022 – 05/2024",
-   "title": "Software Engineer",
-   "org": "DevFlow",
-   "where": "Remote",
-   "desc": "Built CLI developer tooling, local sandbox runtimes, and real-time build log streaming for 50k+ engineers.",
-   "url": "https://example.com/devflow"
-  },
-  {
-   "when": "01/2021 – present",
-   "title": "Core Maintainer",
-   "org": "OpenTrace",
-   "where": "Open source",
-   "desc": "Maintaining open-source distributed tracing SDKs and terminal visualization tools.",
-   "url": "https://github.com/alexrivera"
-  },
-  {
-   "when": "05/2020 – 08/2020",
-   "title": "Open Source Fellow",
-   "org": "SystemsLab",
-   "where": "Remote",
-   "desc": "Implemented zero-copy serialization primitives and benchmarked memory-mapped storage formats."
+   "when": "2023 – present",
+   "title": "Open Source Architect & Systems Builder",
+   "org": "Independent",
+   "where": "Visakhapatnam, India",
+   "desc": "Building custom Debian kernel workflows (RyuOS), network link aggregation engines (AetherBond), and threat detection frameworks.",
+   "url": "https://github.com/SHAURYASANYAL3"
   }
  ],
- "talks": [
-  {
-   "name": "Systems Conf",
-   "place": "San Francisco, USA",
-   "when": "Oct 2025",
-   "lat": 37.77,
-   "lon": -122.41,
-   "desc": "Building deterministic simulation harnesses for storage engines — catching race conditions before production.",
-   "url": "https://example.com/talk-1",
-   "photos": []
-  },
-  {
-   "name": "Open Source Summit",
-   "place": "London, UK",
-   "when": "May 2024",
-   "lat": 51.51,
-   "lon": -0.13,
-   "desc": "Designing zero-dependency developer tools that run fast on every platform.",
-   "url": "https://example.com/talk-2",
-   "photos": []
-  }
- ],
+ "talks": [],
  "links": [
   {
    "label": "Email",
-   "url": "mailto:hello@alexrivera.dev"
+   "url": "mailto:shauryasanya.21jun@gmail.com"
   },
   {
    "label": "GitHub",
-   "url": "https://github.com/alexrivera"
+   "url": "https://github.com/SHAURYASANYAL3/"
   },
   {
    "label": "LinkedIn",
-   "url": "https://www.linkedin.com/in/alexrivera"
+   "url": "https://www.linkedin.com/in/shaurya-sanyal"
   },
   {
-   "label": "X / Twitter",
-   "url": "https://x.com/alexrivera"
-  },
-  {
-   "label": "Blog",
-   "url": "https://alexrivera.dev/blog"
+   "label": "Portfolio",
+   "url": "https://fool-portfolio.vercel.app/"
   }
  ],
  "more": [
-  "minikv",
-  "dotfiles"
+  "saferoute",
+  "fool-portfolio"
  ]
 }

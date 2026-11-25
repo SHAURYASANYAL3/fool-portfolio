@@ -1,51 +1,50 @@
 {
  "from": "2026-01-01",
- "to": "2026-11-24",
- "fetchedAt": "2026-11-25T09:11:39.159Z",
- "scope": "Sample monthly commits",
+ "to": "2026-11-25",
+ "fetchedAt": "2026-11-25T18:44:02.753Z",
+ "scope": "GitHub-attributed public commit contributions per repository and month",
  "months": [
   {
    "month": "2026-01",
    "top": [
     {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 12
-    },
-    {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 4
+     "repo": "fatty-liver-risk-detector",
+     "owner": "SHAURYASANYAL3",
+     "commits": 22
     }
    ]
   },
   {
    "month": "2026-02",
-   "top": [
-    {
-     "repo": "termflow",
-     "owner": "alexrivera",
-     "commits": 19
-    },
-    {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 9
-    }
-   ]
+   "top": []
   },
   {
    "month": "2026-03",
    "top": [
     {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 26
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 124
     },
     {
-     "repo": "minikv",
-     "owner": "alexrivera",
-     "commits": 14
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 120
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 119
+    },
+    {
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 117
+    },
+    {
+     "repo": "e-vara-guardian",
+     "owner": "SHAURYASANYAL3",
+     "commits": 64
     }
    ]
   },
@@ -53,14 +52,29 @@
    "month": "2026-04",
    "top": [
     {
-     "repo": "schemasync",
-     "owner": "alexrivera",
-     "commits": 33
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 211
     },
     {
-     "repo": "termflow",
-     "owner": "alexrivera",
-     "commits": 5
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 179
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 177
+    },
+    {
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 177
+    },
+    {
+     "repo": "ElectionGuide-AI",
+     "owner": "SHAURYASANYAL3",
+     "commits": 32
     }
    ]
   },
@@ -68,14 +82,29 @@
    "month": "2026-05",
    "top": [
     {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 17
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 156
     },
     {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 10
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 146
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 144
+    },
+    {
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 143
+    },
+    {
+     "repo": "RyuOS",
+     "owner": "SHAURYASANYAL3",
+     "commits": 51
     }
    ]
   },
@@ -83,14 +112,29 @@
    "month": "2026-06",
    "top": [
     {
-     "repo": "termflow",
-     "owner": "alexrivera",
-     "commits": 24
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 241
     },
     {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 15
+     "repo": "GEOshield",
+     "owner": "SHAURYASANYAL3",
+     "commits": 108
+    },
+    {
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 60
+    },
+    {
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 59
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 58
     }
    ]
   },
@@ -98,14 +142,29 @@
    "month": "2026-07",
    "top": [
     {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 31
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 138
     },
     {
-     "repo": "minikv",
-     "owner": "alexrivera",
-     "commits": 6
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 137
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 137
+    },
+    {
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 136
+    },
+    {
+     "repo": "Forge-Lens",
+     "owner": "voidswift",
+     "commits": 40
     }
    ]
   },
@@ -113,14 +172,29 @@
    "month": "2026-08",
    "top": [
     {
-     "repo": "schemasync",
-     "owner": "alexrivera",
-     "commits": 15
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 140
     },
     {
-     "repo": "termflow",
-     "owner": "alexrivera",
-     "commits": 11
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 139
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 138
+    },
+    {
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 138
+    },
+    {
+     "repo": "orion",
+     "owner": "Team-Auralis",
+     "commits": 114
     }
    ]
   },
@@ -128,14 +202,29 @@
    "month": "2026-09",
    "top": [
     {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 22
+     "repo": "orion",
+     "owner": "Team-Auralis",
+     "commits": 145
     },
     {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 16
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 126
+    },
+    {
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 124
+    },
+    {
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 124
+    },
+    {
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 122
     }
    ]
   },
@@ -143,14 +232,29 @@
    "month": "2026-10",
    "top": [
     {
-     "repo": "termflow",
-     "owner": "alexrivera",
-     "commits": 29
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 104
     },
     {
-     "repo": "pulsedb",
-     "owner": "alexrivera",
-     "commits": 7
+     "repo": "AegisMail",
+     "owner": "SHAURYASANYAL3",
+     "commits": 100
+    },
+    {
+     "repo": "AgentWatch-rust",
+     "owner": "SHAURYASANYAL3",
+     "commits": 97
+    },
+    {
+     "repo": "E-vara",
+     "owner": "SHAURYASANYAL3",
+     "commits": 95
+    },
+    {
+     "repo": "Astrion",
+     "owner": "Team-Auralis",
+     "commits": 90
     }
    ]
   },
@@ -158,14 +262,29 @@
    "month": "2026-11",
    "top": [
     {
-     "repo": "tracekit",
-     "owner": "alexrivera",
-     "commits": 13
+     "repo": "AgentWatch",
+     "owner": "Shinraya-Tech-Labs",
+     "commits": 48
     },
     {
-     "repo": "minikv",
-     "owner": "alexrivera",
-     "commits": 12
+     "repo": "ACI-Architecture-Framework",
+     "owner": "Team-Auralis",
+     "commits": 15
+    },
+    {
+     "repo": "AetherBond",
+     "owner": "SHAURYASANYAL3",
+     "commits": 5
+    },
+    {
+     "repo": "Astrion",
+     "owner": "Team-Auralis",
+     "commits": 4
+    },
+    {
+     "repo": "Ayuvani",
+     "owner": "SHAURYASANYAL3",
+     "commits": 4
     }
    ]
   }

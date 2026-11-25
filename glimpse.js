@@ -32,7 +32,7 @@ const KIND_TINT = { keyword: "keyword", string: "string", number: "number", func
 const KEYWORDS = new Set("import property readonly required default signal alias var let const function return if else for while do switch case break continue new delete typeof instanceof in of true false null undefined this root parent id on async await class extends static local then elseif end nil and or not repeat until struct enum typedef sizeof unsigned signed int long short char float double void bool static_assert goto extern inline export interface type def module require include extend self super yield try catch finally throw throws raise rescue ensure unless begin public private protected internal override virtual abstract namespace using fun val package object companion lambda with as from is elif except pass None True False nameof get set".split(" "));
 const COMMENT = { qml: "//", js: "//", c: "//", lua: "--", ruby: "#", shell: "#", python: "#", text: null };
 const MONO = { name: "", accent: "#ebe6db", bg: "#050505", fg: "#ebe6db", kinds: { keyword: "#ebe6db", string: "#ebe6db", number: "#ebe6db", function: "#ebe6db", type: "#ebe6db", comment: "#ebe6db", text: "#ebe6db" } };
-const NOTE_TEXT = "// systems, developer tools, open source.";
+const NOTE_TEXT = "// systems, autonomous ai, low-level c.";
 const touchMode = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 // Bump when face.webm / face.mp4 / face-track.json / wall.json change. These files are fetched by script, and browsers can keep old copies of
 // script-initiated fetches even through a hard refresh; a new ?v= makes the old cache entries unreachable.

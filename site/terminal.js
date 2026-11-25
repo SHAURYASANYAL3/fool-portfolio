@@ -112,7 +112,7 @@ function row(segments, className = "") {
 }
 
 export function prompt(cwd, branch) {
-  return [["alex", "t-user"], ["@dev", "t-host"], " ", [cwd, "t-path"], ...(branch ? [" ", [`(${branch})`, "t-git"]] : [])];
+  return [["shaurya", "t-user"], ["@dev", "t-host"], " ", [cwd, "t-path"], ...(branch ? [" ", [`(${branch})`, "t-git"]] : [])];
 }
 
 function buildCalendar({ days, months = [], done = "" }) {
@@ -164,7 +164,7 @@ function monthParts(step) {
   const parts = [syn("("), syn(`"${step.month}"`), syn(", { ")];
   step.top.forEach((item, k) => {
     if (k) parts.push(syn(", "));
-    parts.push([JSON.stringify(item.owner && item.owner !== "alexrivera" ? `${item.owner}/${item.repo}` : item.repo), ""], syn(": "), [String(item.commits), ""]);
+    parts.push([JSON.stringify(item.owner && item.owner !== "SHAURYASANYAL3" ? `${item.owner}/${item.repo}` : item.repo), ""], syn(": "), [String(item.commits), ""]);
   });
   parts.push(syn(" });"), [" // public commits", ""]);
   return parts;
